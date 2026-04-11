@@ -1,0 +1,27 @@
+<div class="container">
+  <section class="section">
+    <h1>All Brands</h1>
+
+    <!-- A-Z Letter Navigation -->
+    <nav class="brand-letter-nav" aria-label="Brand letter navigation">
+      <% letters.forEach(function(letter) { %>
+        <a href="#letter-<%= letter %>"><%= letter %></a>
+      <% }); %>
+    </nav>
+
+    <!-- Brands Grouped by Letter -->
+    <% letters.forEach(function(letter) { %>
+      <div class="brand-group" id="letter-<%= letter %>">
+        <div class="brand-group-letter"><%= letter %></div>
+        <div class="brand-list">
+          <% grouped[letter].forEach(function(brand) { %>
+            <a href="/brand/<%= brand.slug %>" class="brand-list-item">
+              <span><%= brand.name %></span>
+              <span class="product-count"><%= brand.product_count || 0 %> products</span>
+            </a>
+          <% }); %>
+        </div>
+      </div>
+    <% }); %>
+  </section>
+</div>

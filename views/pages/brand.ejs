@@ -1,0 +1,38 @@
+<div class="container">
+  <section class="section">
+    <%- include('../partials/breadcrumb', { breadcrumbs: [
+      { name: 'Brands', url: '/brands' },
+      { name: brand.name, url: '/brand/' + brand.slug }
+    ] }) %>
+
+    <div class="category-header">
+      <h1>
+        <%= brand.name %>
+        <span class="category-count">(<%= total %> products)</span>
+      </h1>
+    </div>
+
+    <% if (products && products.length > 0) { %>
+      <div class="product-grid">
+        <% products.forEach(function(p) { %>
+          <%- include('../partials/product-card', { product: p }) %>
+        <% }); %>
+      </div>
+
+      <% if (totalPages > 1) { %>
+        <%- include('../partials/pagination', {
+          page: page,
+          totalPages: totalPages,
+          baseUrl: '/brand/' + brand.slug,
+          query: {}
+        }) %>
+      <% } %>
+    <% } else { %>
+      <div class="no-results">
+        <h2>No products available</h2>
+        <p>This brand currently has no products listed.</p>
+        <a href="/brands" class="btn btn-primary">Browse Other Brands</a>
+      </div>
+    <% } %>
+  </section>
+</div>

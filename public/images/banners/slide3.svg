@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400" fill="none">
+  <!-- Happy shopper with bags -->
+  <circle cx="250" cy="350" r="190" fill="rgba(255,255,255,0.06)"/>
+
+  <!-- Woman shopper -->
+  <circle cx="230" cy="100" r="42" fill="#F4C7A3"/><!-- head -->
+  <path d="M192 85 Q195 45 230 40 Q265 45 268 85" fill="#5C3317"/><!-- hair long -->
+  <path d="M192 85 Q185 120 188 130" fill="#5C3317"/><!-- hair L -->
+  <path d="M268 85 Q275 120 272 130" fill="#5C3317"/><!-- hair R -->
+  <ellipse cx="218" cy="98" rx="3" ry="3.5" fill="#2D1B0E"/>
+  <ellipse cx="242" cy="98" rx="3" ry="3.5" fill="#2D1B0E"/>
+  <path d="M222 115 Q230 122 238 115" stroke="#C4876E" stroke-width="2" fill="none"/>
+
+  <!-- Casual top -->
+  <rect x="198" y="142" width="64" height="100" rx="8" fill="white" opacity="0.95"/>
+  <rect x="198" y="142" width="64" height="20" rx="8" fill="white"/>
+
+  <!-- Arms -->
+  <rect x="178" y="150" width="22" height="70" rx="10" fill="#F4C7A3"/>
+  <rect x="260" y="148" width="22" height="75" rx="10" fill="#F4C7A3"/>
+
+  <!-- Shopping bag in right hand -->
+  <g transform="translate(265, 195)">
+    <rect x="0" y="18" width="55" height="50" rx="5" fill="#FF6B35"/>
+    <path d="M12 18 Q12 2 27 2 Q42 2 42 18" stroke="white" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <rect x="10" y="28" width="35" height="3" rx="1" fill="rgba(255,255,255,0.5)"/>
+    <text x="27" y="52" font-family="Arial" font-size="10" fill="white" text-anchor="middle" font-weight="bold">SALE</text>
+  </g>
+
+  <!-- Shopping bag in left hand -->
+  <g transform="translate(125, 200)">
+    <rect x="0" y="15" width="45" height="42" rx="4" fill="#00A651"/>
+    <path d="M10 15 Q10 2 22 2 Q35 2 35 15" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <text x="22" y="42" font-family="Arial" font-size="18" fill="white" text-anchor="middle" font-weight="bold">+</text>
+  </g>
+
+  <!-- Floating sale tags -->
+  <g transform="translate(370, 90)">
+    <rect width="60" height="30" rx="15" fill="white" opacity="0.9"/>
+    <text x="30" y="20" font-family="Arial" font-size="11" fill="#FF6B35" text-anchor="middle" font-weight="bold">50% OFF</text>
+  </g>
+
+  <g transform="translate(80, 120)">
+    <rect width="50" height="25" rx="12" fill="white" opacity="0.7"/>
+    <text x="25" y="17" font-family="Arial" font-size="9" fill="#FF6B35" text-anchor="middle" font-weight="bold">DEAL!</text>
+  </g>
+
+  <!-- Stars / sparkles -->
+  <circle cx="400" cy="200" r="4" fill="white" opacity="0.4"/>
+  <circle cx="380" cy="320" r="6" fill="white" opacity="0.2"/>
+  <circle cx="100" cy="300" r="5" fill="white" opacity="0.25"/>
+  <circle cx="350" cy="150" r="3" fill="white" opacity="0.35"/>
+
+  <!-- Confetti dots -->
+  <circle cx="330" cy="80" r="4" fill="#4ADE80" opacity="0.5"/>
+  <circle cx="150" cy="90" r="3" fill="white" opacity="0.4"/>
+  <circle cx="400" cy="250" r="3" fill="#FFD700" opacity="0.4"/>
+</svg>

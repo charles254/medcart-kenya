@@ -1,0 +1,73 @@
+<%
+  // Build query string from existing params, replacing page
+  function buildPageUrl(pageNum) {
+    var params = [];
+    if (typeof query === 'object' && query) {
+      Object.keys(query).forEach(function(key) {
+        if (key !== 'page' && query[key] != null && query[key] !== '') {
+          if (Array.isArray(query[key])) {
+            query[key].forEach(function(v) {
+              params.push(encodeURIComponent(key) + '=' + encodeURIComponent(v));
+            });
+          } else {
+            params.push(encodeURIComponent(key) + '=' + encodeURIComponent(query[key]));
+          }
+        }
+      });
+    }
+    params.push('page=' + pageNum);
+    return baseUrl + '?' + params.join('&');
+  }
+
+  var currentPage = typeof page !== 'undefined' ? page : 1;
+  var pages = typeof totalPages !== 'undefined' ? totalPages : 1;
+  var startPage = Math.max(1, currentPage - 2);
+  var endPage = Math.min(pages, currentPage + 2);
+%>
+
+<% if (pages > 1) { %>
+  <nav class="pagination" aria-label="Pagination">
+    <!-- Previous -->
+    <% if (currentPage > 1) { %>
+      <a href="<%= buildPageUrl(currentPage - 1) %>" class="pagination-btn" aria-label="Previous page">
+        &laquo; Prev
+      </a>
+    <% } else { %>
+      <span class="pagination-btn disabled" aria-disabled="true">&laquo; Prev</span>
+    <% } %>
+
+    <!-- First page + ellipsis -->
+    <% if (startPage > 1) { %>
+      <a href="<%= buildPageUrl(1) %>" class="pagination-btn">1</a>
+      <% if (startPage > 2) { %>
+        <span class="pagination-btn disabled">&hellip;</span>
+      <% } %>
+    <% } %>
+
+    <!-- Page numbers -->
+    <% for (var i = startPage; i <= endPage; i++) { %>
+      <% if (i === currentPage) { %>
+        <span class="pagination-btn active" aria-current="page"><%= i %></span>
+      <% } else { %>
+        <a href="<%= buildPageUrl(i) %>" class="pagination-btn"><%= i %></a>
+      <% } %>
+    <% } %>
+
+    <!-- Last page + ellipsis -->
+    <% if (endPage < pages) { %>
+      <% if (endPage < pages - 1) { %>
+        <span class="pagination-btn disabled">&hellip;</span>
+      <% } %>
+      <a href="<%= buildPageUrl(pages) %>" class="pagination-btn"><%= pages %></a>
+    <% } %>
+
+    <!-- Next -->
+    <% if (currentPage < pages) { %>
+      <a href="<%= buildPageUrl(currentPage + 1) %>" class="pagination-btn" aria-label="Next page">
+        Next &raquo;
+      </a>
+    <% } else { %>
+      <span class="pagination-btn disabled" aria-disabled="true">Next &raquo;</span>
+    <% } %>
+  </nav>
+<% } %>

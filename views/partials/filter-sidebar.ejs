@@ -1,0 +1,147 @@
+<aside class="filter-sidebar">
+  <form action="" method="GET" id="filterForm">
+    <!-- Preserve existing sort -->
+    <% if (typeof filters !== 'undefined' && filters.sort) { %>
+      <input type="hidden" name="sort" value="<%= filters.sort %>">
+    <% } %>
+
+    <!-- Child Categories -->
+    <% if (typeof children !== 'undefined' && children && children.length > 0) { %>
+      <div class="filter-section">
+        <div class="filter-section-title">
+          Subcategories
+          <span class="toggle-icon">&#9662;</span>
+        </div>
+        <div class="filter-section-body">
+          <div class="filter-list">
+            <% children.forEach(function(child) { %>
+              <a href="/category/<%= child.slug %>" style="display:flex;align-items:center;justify-content:space-between;padding:4px 0;font-size:0.875rem;color:#5A6B7B;">
+                <span><%= child.name %></span>
+                <span class="count">(<%= child.product_count || 0 %>)</span>
+              </a>
+            <% }); %>
+          </div>
+        </div>
+      </div>
+    <% } %>
+
+    <!-- Price Range -->
+    <div class="filter-section">
+      <div class="filter-section-title">
+        Price Range (KES)
+        <span class="toggle-icon">&#9662;</span>
+      </div>
+      <div class="filter-section-body">
+        <div class="filter-price-inputs">
+          <input
+            type="number"
+            name="minPrice"
+            placeholder="Min"
+            value="<%= typeof filters !== 'undefined' && filters.minPrice ? filters.minPrice : '' %>"
+            min="0"
+          >
+          <span class="sep">&ndash;</span>
+          <input
+            type="number"
+            name="maxPrice"
+            placeholder="Max"
+            value="<%= typeof filters !== 'undefined' && filters.maxPrice ? filters.maxPrice : '' %>"
+            min="0"
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- Brands -->
+    <% if (typeof brandsInCategory !== 'undefined' && brandsInCategory && brandsInCategory.length > 0) { %>
+      <div class="filter-section">
+        <div class="filter-section-title">
+          Brands
+          <span class="toggle-icon">&#9662;</span>
+        </div>
+        <div class="filter-section-body">
+          <div class="filter-list">
+            <% var displayBrands = brandsInCategory.slice(0, 20); %>
+            <% displayBrands.forEach(function(brand) { %>
+              <%
+                var isChecked = false;
+                if (typeof filters !== 'undefined' && filters.brandIds) {
+                  isChecked = filters.brandIds.indexOf(brand.id) !== -1;
+                }
+              %>
+              <label class="form-checkbox">
+                <input
+                  type="checkbox"
+                  name="brand"
+                  value="<%= brand.id %>"
+                  <%= isChecked ? 'checked' : '' %>
+                >
+                <span><%= brand.name %></span>
+                <% if (brand.product_count) { %>
+                  <span class="count">(<%= brand.product_count %>)</span>
+                <% } %>
+              </label>
+            <% }); %>
+          </div>
+        </div>
+      </div>
+    <% } %>
+
+    <!-- In Stock -->
+    <div class="filter-section">
+      <div class="filter-section-title">
+        Availability
+        <span class="toggle-icon">&#9662;</span>
+      </div>
+      <div class="filter-section-body">
+        <div class="filter-list">
+          <label class="form-checkbox">
+            <input
+              type="checkbox"
+              name="inStock"
+              value="1"
+              <%= (typeof filters !== 'undefined' && filters.inStock) ? 'checked' : '' %>
+            >
+            <span>In Stock Only</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Prescription -->
+    <div class="filter-section">
+      <div class="filter-section-title">
+        Prescription
+        <span class="toggle-icon">&#9662;</span>
+      </div>
+      <div class="filter-section-body">
+        <div class="filter-list">
+          <label class="form-checkbox">
+            <input
+              type="checkbox"
+              name="rx"
+              value="1"
+              <%= (typeof query !== 'undefined' && query && query.rx === '1') ? 'checked' : '' %>
+            >
+            <span>Prescription Required</span>
+          </label>
+          <label class="form-checkbox">
+            <input
+              type="checkbox"
+              name="rx"
+              value="0"
+              <%= (typeof query !== 'undefined' && query && query.rx === '0') ? 'checked' : '' %>
+            >
+            <span>Over-the-Counter Only</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="filter-actions">
+      <button type="submit" class="btn btn-primary btn-sm">Apply Filters</button>
+      <a href="<%= typeof category !== 'undefined' ? '/category/' + category.slug : '' %>" class="btn btn-secondary btn-sm">Clear All</a>
+    </div>
+  </form>
+</aside>

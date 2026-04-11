@@ -1,0 +1,116 @@
+/* ============================================
+   MedCart Kenya - CSS Custom Properties
+   ============================================ */
+
+:root {
+  /* ---- Primary Colors ---- */
+  --color-primary: #00A651;
+  --color-primary-dark: #008C45;
+  --color-primary-light: #E8F5E9;
+  --color-primary-hover: #009648;
+
+  /* ---- Secondary Colors ---- */
+  --color-secondary: #1B3A5C;
+  --color-secondary-light: #2A4F7A;
+
+  /* ---- Accent Colors ---- */
+  --color-accent: #FF6B35;
+  --color-accent-dark: #E55A28;
+  --color-accent-light: #FFF0EB;
+
+  /* ---- Neutral Colors ---- */
+  --color-bg: #FFFFFF;
+  --color-card: #FFFFFF;
+  --color-border: #E2E8F0;
+  --color-border-light: #F1F5F9;
+
+  /* ---- Text Colors ---- */
+  --color-heading: #1A1A2E;
+  --color-body: #5A6B7B;
+  --color-muted: #94A3B8;
+  --color-white: #FFFFFF;
+
+  /* ---- Semantic Colors ---- */
+  --color-rx: #DC2626;
+  --color-rx-light: #FEF2F2;
+  --color-success: #00A651;
+  --color-success-light: #E8F5E9;
+  --color-error: #DC2626;
+  --color-error-light: #FEF2F2;
+  --color-warning: #F59E0B;
+  --color-warning-light: #FFFBEB;
+  --color-info: #3B82F6;
+  --color-info-light: #EFF6FF;
+
+  /* ---- Spacing Scale (4px base) ---- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* ---- Typography ---- */
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.125rem;   /* 18px */
+  --font-size-xl: 1.25rem;    /* 20px */
+  --font-size-2xl: 1.5rem;    /* 24px */
+  --font-size-3xl: 1.875rem;  /* 30px */
+  --font-size-4xl: 2.25rem;   /* 36px */
+
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+
+  /* ---- Shadows ---- */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-green: 0 4px 14px rgba(0, 166, 81, 0.25);
+  --shadow-card-hover: 0 8px 25px rgba(0, 166, 81, 0.15);
+
+  /* ---- Border Radius ---- */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-full: 9999px;
+
+  /* ---- Layout ---- */
+  --max-width: 1200px;
+  --header-height: 64px;
+  --top-bar-height: 36px;
+  --sidebar-width: 260px;
+
+  /* ---- Transitions ---- */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 350ms ease;
+
+  /* ---- Z-Index Scale ---- */
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-overlay: 300;
+  --z-modal: 400;
+  --z-toast: 500;
+
+  /* ---- Breakpoints (for reference, used in media queries) ----
+     sm: 640px
+     md: 768px
+     lg: 1024px
+     xl: 1200px
+  */
+}

@@ -1,0 +1,102 @@
+<div class="container cart-page">
+  <h1>Shopping Cart</h1>
+
+  <% if (!cart || cart.length === 0) { %>
+    <!-- Empty Cart -->
+    <div class="cart-empty">
+      <div class="cart-empty-icon">&#128722;</div>
+      <h2>Your cart is empty</h2>
+      <p>Looks like you haven't added any products yet. Start browsing to find great deals.</p>
+      <a href="/" class="btn btn-primary btn-lg">Continue Shopping</a>
+    </div>
+  <% } else { %>
+    <% if (typeof hasRxItems !== 'undefined' && hasRxItems) { %>
+      <div class="cart-rx-warning">
+        <span style="font-size: 20px;">&#9888;</span>
+        <span>Your cart contains prescription items. You will need to upload a valid prescription during checkout.</span>
+      </div>
+    <% } %>
+
+    <!-- Cart Table -->
+    <table class="cart-table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Subtotal</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% cart.forEach(function(item) { %>
+          <tr data-product-id="<%= item.id %>">
+            <td>
+              <div class="cart-item">
+                <img
+                  src="<%= item.primary_image || '/images/placeholder.svg' %>"
+                  alt="<%= item.title %>"
+                  class="cart-item-image"
+                  onerror="this.onerror=null;this.src='/images/placeholder.svg';"
+                >
+                <div class="cart-item-title">
+                  <a href="/product/<%= item.slug %>"><%= item.title %></a>
+                  <% if (item.requiresPrescription) { %>
+                    <span class="rx-badge" style="margin-left: 6px;">&#9877; Rx</span>
+                  <% } %>
+                </div>
+              </div>
+            </td>
+            <td class="cart-item-price">
+              KES <%= Number(item.price).toLocaleString() %>
+            </td>
+            <td>
+              <div class="qty-controls">
+                <form action="/cart/update" method="POST" class="cart-qty-form" style="display:contents;">
+                  <input type="hidden" name="productId" value="<%= item.id %>">
+                  <input type="hidden" name="quantity" value="<%= Math.max(1, item.quantity - 1) %>">
+                  <button type="submit" class="qty-btn qty-minus" aria-label="Decrease quantity">&minus;</button>
+                </form>
+                <span class="qty-value"><%= item.quantity %></span>
+                <form action="/cart/update" method="POST" class="cart-qty-form" style="display:contents;">
+                  <input type="hidden" name="productId" value="<%= item.id %>">
+                  <input type="hidden" name="quantity" value="<%= item.quantity + 1 %>">
+                  <button type="submit" class="qty-btn qty-plus" aria-label="Increase quantity">&plus;</button>
+                </form>
+              </div>
+            </td>
+            <td class="cart-item-price">
+              KES <%= Number(item.price * item.quantity).toLocaleString() %>
+            </td>
+            <td>
+              <form action="/cart/remove" method="POST" class="cart-remove-form">
+                <input type="hidden" name="productId" value="<%= item.id %>">
+                <button type="submit" class="cart-remove-btn" aria-label="Remove item">&#128465; Remove</button>
+              </form>
+            </td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+
+    <!-- Cart Summary -->
+    <div class="cart-summary">
+      <div class="cart-summary-row total">
+        <span>Subtotal</span>
+        <span>KES <%= Number(total).toLocaleString() %></span>
+      </div>
+
+      <div class="cart-delivery-note">
+        &#128666; Free delivery on orders above KES 2,500
+      </div>
+
+      <a href="/checkout" class="btn btn-primary btn-block btn-lg">
+        Proceed to Checkout
+      </a>
+
+      <div style="text-align: center; margin-top: 12px;">
+        <a href="/" style="font-size: 0.875rem; color: #5A6B7B;">Continue Shopping</a>
+      </div>
+    </div>
+  <% } %>
+</div>

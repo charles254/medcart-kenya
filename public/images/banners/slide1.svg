@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400" fill="none">
+  <!-- Woman pharmacist with products -->
+  <circle cx="250" cy="350" r="200" fill="rgba(255,255,255,0.06)"/>
+
+  <!-- Female figure - pharmacist -->
+  <circle cx="250" cy="100" r="45" fill="#F4C7A3"/><!-- head -->
+  <path d="M210 85 Q215 50 250 45 Q285 50 290 85" fill="#2D1B0E"/><!-- hair -->
+  <path d="M210 85 Q205 100 205 95" fill="#2D1B0E"/><!-- hair side -->
+  <path d="M290 85 Q295 100 295 95" fill="#2D1B0E"/><!-- hair side -->
+  <ellipse cx="237" cy="98" rx="3" ry="3.5" fill="#2D1B0E"/><!-- eye L -->
+  <ellipse cx="263" cy="98" rx="3" ry="3.5" fill="#2D1B0E"/><!-- eye R -->
+  <path d="M243 112 Q250 118 257 112" stroke="#C4876E" stroke-width="2" fill="none"/><!-- smile -->
+
+  <!-- Lab coat / pharmacy coat -->
+  <rect x="205" y="145" width="90" height="130" rx="10" fill="white" opacity="0.95"/>
+  <rect x="215" y="145" width="70" height="25" rx="4" fill="#00A651"/><!-- collar -->
+  <circle cx="260" cy="200" r="6" fill="#00A651"/><!-- button -->
+  <circle cx="260" cy="225" r="6" fill="#00A651"/><!-- button -->
+
+  <!-- Arms -->
+  <rect x="185" y="155" width="22" height="80" rx="10" fill="#F4C7A3"/><!-- arm L -->
+  <rect x="293" y="155" width="22" height="80" rx="10" fill="#F4C7A3"/><!-- arm R -->
+
+  <!-- Medicine box in hand -->
+  <rect x="295" y="200" width="55" height="40" rx="4" fill="#FF6B35"/>
+  <rect x="300" y="208" width="18" height="4" rx="2" fill="white"/>
+  <rect x="300" y="216" width="30" height="3" rx="1" fill="rgba(255,255,255,0.6)"/>
+  <rect x="300" y="222" width="25" height="3" rx="1" fill="rgba(255,255,255,0.6)"/>
+
+  <!-- Stethoscope -->
+  <path d="M235 170 Q220 200 225 230" stroke="#4ADE80" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <circle cx="225" cy="233" r="6" stroke="#4ADE80" stroke-width="3" fill="none"/>
+
+  <!-- Cross badge -->
+  <circle cx="230" cy="160" r="10" fill="#00A651"/>
+  <rect x="227" y="153" width="6" height="14" rx="1" fill="white"/>
+  <rect x="223" y="157" width="14" height="6" rx="1" fill="white"/>
+
+  <!-- Floating elements -->
+  <g transform="translate(380, 100)">
+    <rect width="40" height="16" rx="8" fill="white" opacity="0.7"/>
+    <rect width="20" height="16" rx="8" fill="#4ADE80" opacity="0.7"/>
+  </g>
+  <g transform="translate(100, 180) rotate(-20)">
+    <rect width="36" height="14" rx="7" fill="white" opacity="0.5"/>
+    <rect width="18" height="14" rx="7" fill="#FF6B35" opacity="0.5"/>
+  </g>
+  <circle cx="400" cy="280" r="8" fill="white" opacity="0.15"/>
+  <circle cx="120" cy="120" r="6" fill="white" opacity="0.2"/>
+</svg>

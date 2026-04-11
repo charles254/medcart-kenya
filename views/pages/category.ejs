@@ -1,0 +1,105 @@
+<%
+  var breadcrumbs = [];
+  if (typeof ancestors !== 'undefined' && ancestors) {
+    ancestors.forEach(function(a) {
+      breadcrumbs.push({ name: a.name, url: '/category/' + a.slug });
+    });
+  }
+  breadcrumbs.push({ name: category.name, url: '/category/' + category.slug });
+%>
+
+<div class="container">
+  <!-- Breadcrumb -->
+  <%- include('../partials/breadcrumb', { breadcrumbs: breadcrumbs }) %>
+
+  <!-- Category Header -->
+  <div class="category-header">
+    <h1>
+      <%= category.name %>
+      <span class="category-count">(<%= total %> products)</span>
+    </h1>
+
+    <!-- Sort -->
+    <form method="GET" style="display:inline;">
+      <% if (typeof query !== 'undefined' && query) { %>
+        <% Object.keys(query).forEach(function(key) { %>
+          <% if (key !== 'sort' && key !== 'page') { %>
+            <% if (Array.isArray(query[key])) { %>
+              <% query[key].forEach(function(v) { %>
+                <input type="hidden" name="<%= key %>" value="<%= v %>">
+              <% }); %>
+            <% } else { %>
+              <input type="hidden" name="<%= key %>" value="<%= query[key] %>">
+            <% } %>
+          <% } %>
+        <% }); %>
+      <% } %>
+      <select name="sort" class="sort-select" onchange="this.form.submit()">
+        <% if (typeof sortOptions !== 'undefined') { %>
+          <% sortOptions.forEach(function(opt) { %>
+            <option value="<%= opt.value %>" <%= (typeof filters !== 'undefined' && filters.sort === opt.value) ? 'selected' : '' %>>
+              <%= opt.label %>
+            </option>
+          <% }); %>
+        <% } %>
+      </select>
+    </form>
+  </div>
+
+  <!-- Child Subcategory Pills (show first 12, no duplicates) -->
+  <% if (typeof children !== 'undefined' && children && children.length > 0) { %>
+    <div class="category-pills">
+      <%
+        var seenSlugs = {};
+        var pillCount = 0;
+        children.forEach(function(child) {
+          if (pillCount >= 12) return;
+          if (seenSlugs[child.slug]) return;
+          seenSlugs[child.slug] = true;
+          pillCount++;
+      %>
+        <a href="/category/<%= child.slug %>" class="category-pill">
+          <%= child.name %> (<%= child.product_count || 0 %>)
+        </a>
+      <% }); %>
+    </div>
+  <% } %>
+
+  <!-- Layout: Sidebar + Products -->
+  <div class="category-layout">
+    <!-- Filter Sidebar -->
+    <%- include('../partials/filter-sidebar', {
+      children: typeof children !== 'undefined' ? children : [],
+      brandsInCategory: typeof brandsInCategory !== 'undefined' ? brandsInCategory : [],
+      filters: typeof filters !== 'undefined' ? filters : {},
+      category: category,
+      query: typeof query !== 'undefined' ? query : {}
+    }) %>
+
+    <!-- Main Content -->
+    <div class="category-main">
+      <% if (products && products.length > 0) { %>
+        <div class="product-grid">
+          <% products.forEach(function(p) { %>
+            <%- include('../partials/product-card', { product: p }) %>
+          <% }); %>
+        </div>
+
+        <% if (totalPages > 1) { %>
+          <%- include('../partials/pagination', {
+            page: page,
+            totalPages: totalPages,
+            baseUrl: '/category/' + category.slug,
+            query: typeof query !== 'undefined' ? query : {}
+          }) %>
+        <% } %>
+      <% } else { %>
+        <div class="no-results">
+          <h2>No products found</h2>
+          <p>Try adjusting your filters or browse a different category.</p>
+          <a href="/category/<%= category.slug %>" class="btn btn-primary">Clear Filters</a>
+        </div>
+      <% } %>
+    </div>
+  </div>
+</div>

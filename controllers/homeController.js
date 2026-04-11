@@ -1,0 +1,41 @@
+const Category = require('../models/Category');
+const Product = require('../models/Product');
+const Brand = require('../models/Brand');
+const { CATEGORY_ICONS } = require('../config/constants');
+
+function index(req, res) {
+  const categories = Category.getTopLevel().map(cat => ({
+    ...cat,
+    icon: CATEGORY_ICONS[cat.name] || '',
+  }));
+
+  const trending = Product.getTrending(12);
+  const deals = Product.getDeals(1, 8);
+  const popularBrands = Brand.getPopular(12);
+
+  const orgJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'MedCart Kenya',
+    url: 'https://medcart.co.ke',
+    logo: 'https://medcart.co.ke/favicon.svg',
+    description: "Kenya's trusted online pharmacy",
+    contactPoint: { '@type': 'ContactPoint', telephone: '+254700000000', contactType: 'customer service' },
+    sameAs: ['https://facebook.com/medcartkenya', 'https://instagram.com/medcartkenya', 'https://x.com/medcartkenya'],
+  };
+
+  res.render('pages/home', {
+    title: 'MedCart Kenya - Online Pharmacy',
+    metaDescription: 'Shop 8,000+ medicines, vitamins, supplements and health products online. Fast delivery across Kenya.',
+    canonicalPath: '',
+    jsonLd: orgJsonLd,
+    categories,
+    trending,
+    deals: deals.products,
+    popularBrands,
+  });
+}
+
+module.exports = {
+  index,
+};

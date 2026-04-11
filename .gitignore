@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+
+# Environment
+.env
+.env.local
+.env.production
+
+# Database
+database/pharmacy.db
+database/pharmacy.db-wal
+database/pharmacy.db-shm
+
+# Sessions
+sessions/
+database/sessions.sqlite3
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Uploads (prescriptions contain sensitive data)
+public/uploads/prescriptions/*
+!public/uploads/prescriptions/.gitkeep
+
+# Build
+dist/
+build/

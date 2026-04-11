@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" fill="none">
+  <rect width="1200" height="400" fill="url(#g2)"/>
+  <defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="0.5"><stop offset="0%" stop-color="#1B3A5C"/><stop offset="100%" stop-color="#0D1F33"/></linearGradient></defs>
+  <circle cx="980" cy="200" r="160" fill="rgba(0,166,81,0.12)"/>
+  <circle cx="1020" cy="170" r="100" fill="rgba(0,166,81,0.08)"/>
+  <!-- Vitamin bottles -->
+  <rect x="870" y="100" width="70" height="130" rx="8" fill="#FF6B35" opacity="0.9"/>
+  <rect x="880" y="80" width="50" height="28" rx="5" fill="#FFDAC8"/>
+  <text x="905" y="170" font-family="Arial" font-size="10" fill="white" text-anchor="middle" font-weight="bold">VIT C</text>
+  <rect x="960" y="120" width="70" height="130" rx="8" fill="#00A651" opacity="0.9"/>
+  <rect x="970" y="100" width="50" height="28" rx="5" fill="#E8F5E9"/>
+  <text x="995" y="190" font-family="Arial" font-size="10" fill="white" text-anchor="middle" font-weight="bold">VIT D</text>
+  <rect x="1050" y="90" width="70" height="130" rx="8" fill="#4ADE80" opacity="0.85"/>
+  <rect x="1060" y="70" width="50" height="28" rx="5" fill="#E8F5E9"/>
+  <text x="1085" y="160" font-family="Arial" font-size="10" fill="white" text-anchor="middle" font-weight="bold">OMEGA</text>
+  <!-- Stars -->
+  <circle cx="850" cy="130" r="3" fill="white" opacity="0.3"/>
+  <circle cx="1130" cy="280" r="4" fill="white" opacity="0.2"/>
+  <circle cx="820" cy="300" r="3" fill="white" opacity="0.25"/>
+</svg>

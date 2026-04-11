@@ -1,0 +1,19 @@
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <span class="breadcrumb-item">
+    <a href="/">Home</a>
+  </span>
+  <% if (typeof breadcrumbs !== 'undefined' && breadcrumbs && breadcrumbs.length > 0) { %>
+    <% breadcrumbs.forEach(function(crumb, index) { %>
+      <span class="breadcrumb-separator">&rsaquo;</span>
+      <% if (index < breadcrumbs.length - 1 || typeof currentPage !== 'undefined') { %>
+        <span class="breadcrumb-item">
+          <a href="<%= crumb.url %>"><%= crumb.name %></a>
+        </span>
+      <% } else { %>
+        <span class="breadcrumb-item active" aria-current="page">
+          <%= crumb.name %>
+        </span>
+      <% } %>
+    <% }); %>
+  <% } %>
+</nav>

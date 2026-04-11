@@ -1,0 +1,295 @@
+<%
+  var p = product;
+  var hasSale = p.sale_price && p.sale_price < p.price;
+  var discountPercent = hasSale ? Math.round((p.price - p.sale_price) / p.price * 100) : 0;
+
+  var breadcrumbs = [];
+  if (typeof categories !== 'undefined' && categories && categories.length > 0) {
+    categories.forEach(function(c) {
+      breadcrumbs.push({ name: c.name, url: '/category/' + c.slug });
+    });
+  }
+  breadcrumbs.push({ name: p.title, url: '/product/' + p.slug });
+
+  var descText = p.enhanced_description || p.description || '';
+%>
+
+<div class="container">
+  <%- include('../partials/breadcrumb', { breadcrumbs: breadcrumbs }) %>
+
+  <!-- Product Detail Top -->
+  <div class="product-detail">
+    <!-- Product Image -->
+    <div class="product-image-main">
+      <img
+        src="<%= p.primary_image || '/images/placeholder.svg' %>"
+        alt="<%= p.title %>"
+        onerror="this.onerror=null;this.src='/images/placeholder.svg';"
+      >
+    </div>
+
+    <!-- Product Info -->
+    <div class="product-info">
+      <h1><%= p.title %></h1>
+
+      <div class="product-brand-link">
+        <% if (p.brand_name) { %>
+          Brand: <a href="/brand/<%= p.brand_slug || '' %>"><%= p.brand_name %></a>
+        <% } %>
+        <% if (p.requires_prescription) { %>
+          <span class="rx-badge rx-badge-large" style="margin-left: 8px;">&#9877; Prescription Required</span>
+        <% } %>
+      </div>
+
+      <!-- Price -->
+      <div class="product-price-block">
+        <% if (hasSale) { %>
+          <span class="product-price-current product-price-sale">KES <%= Number(p.sale_price).toLocaleString() %></span>
+          <span class="product-price-original">KES <%= Number(p.price).toLocaleString() %></span>
+          <div class="product-price-savings">You save KES <%= Number(p.price - p.sale_price).toLocaleString() %> (<%= discountPercent %>% OFF)</div>
+        <% } else { %>
+          <span class="product-price-current">KES <%= Number(p.price).toLocaleString() %></span>
+        <% } %>
+      </div>
+
+      <!-- Short summary -->
+      <% if (descText) { %>
+        <p class="product-summary"><%= descText.length > 120 ? descText.substring(0, 120) + '...' : descText %></p>
+      <% } %>
+
+      <!-- Stock + Add to Cart -->
+      <div class="product-actions">
+        <div class="product-stock">
+          <% if (p.in_stock) { %>
+            <span class="badge badge-in-stock">&#10003; In Stock</span>
+          <% } else { %>
+            <span class="badge badge-out-of-stock">Out of Stock</span>
+          <% } %>
+        </div>
+
+        <div class="product-add-to-cart">
+          <% if (p.in_stock) { %>
+            <form action="/cart/add" method="POST" class="add-to-cart-form">
+              <input type="hidden" name="productId" value="<%= p.id %>">
+              <input type="hidden" name="slug" value="<%= p.slug %>">
+              <button type="submit" class="btn btn-primary btn-lg btn-block">
+                &#128722; Add to Cart
+              </button>
+            </form>
+          <% } else { %>
+            <button class="btn btn-lg btn-block btn-out-of-stock" disabled>Out of Stock</button>
+          <% } %>
+        </div>
+      </div>
+
+      <% if (p.requires_prescription) { %>
+        <div class="rx-info-box">
+          <span class="rx-icon">&#9877;</span>
+          <p>This product requires a valid prescription. You will need to upload your prescription during checkout.</p>
+        </div>
+      <% } %>
+
+      <!-- Trust badges row -->
+      <div class="product-trust">
+        <div class="product-trust-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>100% Genuine</span>
+        </div>
+        <div class="product-trust-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          <span>Fast Delivery</span>
+        </div>
+        <div class="product-trust-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+          <span>Easy Returns</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product Tabs -->
+  <div class="product-tabs-section">
+    <div class="product-tabs-nav">
+      <button class="product-tab active" data-tab="description">Description</button>
+      <button class="product-tab" data-tab="delivery">Delivery &amp; Returns</button>
+      <button class="product-tab" data-tab="reviews">Reviews (0)</button>
+    </div>
+
+    <!-- Tab: Description -->
+    <div class="product-tab-content active" id="tab-description">
+      <div class="tab-description-body">
+        <%
+          // Parse description into structured sections
+          var rawDesc = descText || '';
+          var paragraphs = rawDesc.split(/\n\n+/).filter(function(s) { return s.trim(); });
+          var mainDesc = '';
+          var keyFeatures = [];
+          var orderNote = '';
+
+          paragraphs.forEach(function(para) {
+            para = para.trim();
+            if (para.startsWith('Key features:')) {
+              var featurePart = para.replace('Key features:', '').trim();
+              featurePart.replace(/\.$/, '').split('|').forEach(function(f) {
+                f = f.trim();
+                if (f) keyFeatures.push(f);
+              });
+            } else if (para.startsWith('Order ') || para.startsWith('This is a prescription')) {
+              orderNote = para;
+            } else if (para.startsWith('Formulated for') || para.startsWith('Suitable for')) {
+              mainDesc += (mainDesc ? ' ' : '') + para;
+            } else {
+              mainDesc += (mainDesc ? '\n\n' : '') + para;
+            }
+          });
+
+          // Split main description into readable paragraphs
+          var descParagraphs = mainDesc.split(/\n\n+/).filter(function(s) { return s.trim(); });
+        %>
+
+        <h3>About This Product</h3>
+
+        <% if (descParagraphs.length > 0) { %>
+          <% descParagraphs.forEach(function(para) { %>
+            <p class="desc-para"><%= para.trim() %></p>
+          <% }); %>
+        <% } else { %>
+          <p class="desc-para"><%= p.title %> is a quality health and wellness product available at MedCart Kenya from a trusted manufacturer.</p>
+        <% } %>
+
+        <% if (keyFeatures.length > 0) { %>
+          <div class="desc-features">
+            <h4>Key Features</h4>
+            <ul class="features-list">
+              <% keyFeatures.forEach(function(f) { %>
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span><%= f %></span>
+                </li>
+              <% }); %>
+            </ul>
+          </div>
+        <% } %>
+
+        <% if (orderNote) { %>
+          <div class="desc-order-note">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            <p><%= orderNote %></p>
+          </div>
+        <% } %>
+
+        <% if (p.brand_name || p.source) { %>
+        <h3>Product Details</h3>
+        <table class="product-specs-table">
+          <% if (p.brand_name) { %>
+          <tr>
+            <td>Brand</td>
+            <td><a href="/brand/<%= p.brand_slug || '' %>"><%= p.brand_name %></a></td>
+          </tr>
+          <% } %>
+          <tr>
+            <td>SKU</td>
+            <td><%= p.source_id || p.id %></td>
+          </tr>
+          <tr>
+            <td>Availability</td>
+            <td><%= p.in_stock ? 'In Stock' : 'Out of Stock' %></td>
+          </tr>
+          <% if (p.requires_prescription) { %>
+          <tr>
+            <td>Prescription</td>
+            <td style="color: var(--color-danger);">Required</td>
+          </tr>
+          <% } %>
+          <tr>
+            <td>Category</td>
+            <td>
+              <% if (typeof categories !== 'undefined' && categories.length > 0) { %>
+                <a href="/category/<%= categories[0].slug %>"><%= categories[0].name %></a>
+              <% } else { %>
+                Health & Wellness
+              <% } %>
+            </td>
+          </tr>
+        </table>
+        <% } %>
+      </div>
+    </div>
+
+    <!-- Tab: Delivery -->
+    <div class="product-tab-content" id="tab-delivery">
+      <div class="tab-delivery-body">
+        <h3>Delivery Information</h3>
+        <div class="delivery-options">
+          <div class="delivery-option">
+            <div class="delivery-option-icon">&#128666;</div>
+            <div>
+              <strong>Standard Delivery</strong>
+              <p>Delivery within 2-4 business days across Kenya. Free for orders above KES 2,500.</p>
+            </div>
+          </div>
+          <div class="delivery-option">
+            <div class="delivery-option-icon">&#9889;</div>
+            <div>
+              <strong>Express Delivery (Nairobi)</strong>
+              <p>Same-day delivery for orders placed before 12 PM within Nairobi. Additional KES 200 applies.</p>
+            </div>
+          </div>
+          <div class="delivery-option">
+            <div class="delivery-option-icon">&#127758;</div>
+            <div>
+              <strong>Pickup from Store</strong>
+              <p>Order online and pick up from our pharmacy location. Ready within 2 hours of order confirmation.</p>
+            </div>
+          </div>
+        </div>
+
+        <h3>Returns Policy</h3>
+        <ul class="returns-list">
+          <li>Products can be returned within <strong>7 days</strong> of delivery if unopened and in original packaging.</li>
+          <li>Damaged or incorrect items will be replaced at no additional cost.</li>
+          <li>Prescription medicines and opened personal care items cannot be returned for hygiene and safety reasons.</li>
+          <li>Contact our support team at <strong>support@medcart.co.ke</strong> to initiate a return.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Tab: Reviews -->
+    <div class="product-tab-content" id="tab-reviews">
+      <div class="tab-reviews-body">
+        <div class="reviews-empty">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#CBD5E1" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <h3>No Reviews Yet</h3>
+          <p>Be the first to review this product! Share your experience to help other customers.</p>
+          <button class="btn btn-primary btn-sm" disabled>Write a Review</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Products -->
+  <% if (typeof related !== 'undefined' && related && related.length > 0) { %>
+    <section class="related-products">
+      <h2>Related Products</h2>
+      <div class="product-grid">
+        <% related.forEach(function(rp) { %>
+          <%- include('../partials/product-card', { product: rp }) %>
+        <% }); %>
+      </div>
+    </section>
+  <% } %>
+</div>
+
+<script>
+// Product tabs
+document.querySelectorAll('.product-tab').forEach(function(tab) {
+  tab.addEventListener('click', function() {
+    var target = this.dataset.tab;
+    document.querySelectorAll('.product-tab').forEach(function(t) { t.classList.remove('active'); });
+    document.querySelectorAll('.product-tab-content').forEach(function(c) { c.classList.remove('active'); });
+    this.classList.add('active');
+    var content = document.getElementById('tab-' + target);
+    if (content) content.classList.add('active');
+  });
+});
+</script>

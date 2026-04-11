@@ -1,0 +1,65 @@
+<!-- Hero Banner -->
+<section class="page-hero">
+  <div class="container">
+    <h1>Sitemap</h1>
+    <p>Browse all pages and sections of MedCart Kenya</p>
+  </div>
+</section>
+
+<div class="container">
+  <div class="sitemap-grid">
+
+    <!-- Main Pages -->
+    <div class="sitemap-section">
+      <h3>Main Pages</h3>
+      <div class="sitemap-links">
+        <a href="/">Home</a>
+        <a href="/about">About Us</a>
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/terms">Terms &amp; Conditions</a>
+        <a href="/cookies">Cookie Policy</a>
+        <a href="/deals">Deals &amp; Offers</a>
+        <a href="/brands">All Brands</a>
+      </div>
+    </div>
+
+    <!-- Shop by Category -->
+    <% if (categories && categories.length) { %>
+      <% categories.forEach(function(cat) { %>
+        <div class="sitemap-section">
+          <h3><a href="/category/<%= cat.slug %>"><%= cat.name %></a></h3>
+          <div class="sitemap-links">
+            <% if (cat.children && cat.children.length) { %>
+              <% cat.children.forEach(function(child) { %>
+                <a href="/category/<%= child.slug %>" class="sitemap-sub"><%= child.name %></a>
+              <% }); %>
+            <% } %>
+          </div>
+        </div>
+      <% }); %>
+    <% } %>
+
+    <!-- Popular Brands -->
+    <div class="sitemap-section">
+      <h3>Popular Brands</h3>
+      <div class="sitemap-links">
+        <% if (popularBrands && popularBrands.length) { %>
+          <% popularBrands.forEach(function(brand) { %>
+            <a href="/brand/<%= brand.slug %>"><%= brand.name %></a>
+          <% }); %>
+        <% } %>
+      </div>
+    </div>
+
+    <!-- Customer Service -->
+    <div class="sitemap-section">
+      <h3>Customer Service</h3>
+      <div class="sitemap-links">
+        <a href="/cart">Shopping Cart</a>
+        <a href="/checkout">Checkout</a>
+        <a href="/search">Search</a>
+      </div>
+    </div>
+
+  </div>
+</div>

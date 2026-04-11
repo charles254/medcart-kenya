@@ -1,0 +1,69 @@
+<%
+  var p = product;
+  var hasSale = p.sale_price && p.sale_price < p.price;
+  var discountPercent = hasSale ? Math.round((p.price - p.sale_price) / p.price * 100) : 0;
+  var displayPrice = hasSale ? p.sale_price : p.price;
+%>
+<div class="product-card">
+  <!-- Badges -->
+  <div class="product-card-badges">
+    <span>
+      <% if (hasSale) { %>
+        <span class="badge badge-sale"><%= discountPercent %>% OFF</span>
+      <% } %>
+    </span>
+    <span>
+      <% if (p.requires_prescription) { %>
+        <span class="rx-badge">Rx</span>
+      <% } %>
+    </span>
+  </div>
+
+  <!-- Product Image -->
+  <a href="/product/<%= p.slug %>" class="product-card-image">
+    <img
+      src="<%= p.primary_image || '/images/placeholder.svg' %>"
+      alt="<%= p.title %>"
+      loading="lazy"
+      onerror="this.onerror=null;this.src='/images/placeholder.svg';"
+    >
+  </a>
+
+  <!-- Product Info -->
+  <div class="product-card-body">
+    <% if (p.brand_name) { %>
+      <div class="product-card-brand"><%= p.brand_name %></div>
+    <% } %>
+
+    <div class="product-card-title">
+      <a href="/product/<%= p.slug %>"><%= p.title %></a>
+    </div>
+
+    <!-- Price -->
+    <div class="product-card-price">
+      <% if (hasSale) { %>
+        <span class="price-current price-sale">KES <%= Number(p.sale_price).toLocaleString() %></span>
+        <span class="price-original">KES <%= Number(p.price).toLocaleString() %></span>
+      <% } else { %>
+        <span class="price-current">KES <%= Number(p.price).toLocaleString() %></span>
+      <% } %>
+    </div>
+
+    <!-- Add to Cart / Out of Stock -->
+    <div class="product-card-action">
+      <% if (p.in_stock) { %>
+        <form action="/cart/add" method="POST" class="add-to-cart-form">
+          <input type="hidden" name="productId" value="<%= p.id %>">
+          <input type="hidden" name="slug" value="<%= p.slug %>">
+          <button type="submit" class="btn btn-primary btn-sm btn-block">
+            &#128722; Add to Cart
+          </button>
+        </form>
+      <% } else { %>
+        <button class="btn btn-sm btn-block btn-out-of-stock" disabled>
+          Out of Stock
+        </button>
+      <% } %>
+    </div>
+  </div>
+</div>
