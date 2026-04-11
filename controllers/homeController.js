@@ -20,7 +20,7 @@ function index(req, res) {
     url: 'https://afyacart.net',
     logo: 'https://afyacart.net/favicon.svg',
     description: "Kenya's trusted online pharmacy",
-    contactPoint: { '@type': 'ContactPoint', telephone: '+254700000000', contactType: 'customer service' },
+    contactPoint: { '@type': 'ContactPoint', telephone: '+254734600890', contactType: 'customer service' },
     sameAs: ['https://facebook.com/afyacart', 'https://instagram.com/afyacart', 'https://x.com/afyacart'],
   };
 
