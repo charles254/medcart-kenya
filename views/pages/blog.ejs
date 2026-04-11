@@ -1,0 +1,109 @@
+<!-- Blog Header -->
+<section class="blog-header">
+  <div class="container">
+    <h1>MedCart Health Blog</h1>
+    <p>Expert health tips, wellness guides, and pharmacy insights</p>
+    <% if (activeCategory) { %>
+      <p style="margin-top: 8px; font-size: 14px;">Showing posts in: <strong><%= activeCategory %></strong> &mdash; <a href="/blog" style="color: #4ADE80;">View All</a></p>
+    <% } %>
+  </div>
+</section>
+
+<div class="container">
+  <div class="blog-layout">
+    <!-- Main Content -->
+    <div class="blog-main">
+      <% if (posts.length === 0) { %>
+        <div style="text-align: center; padding: 48px 0;">
+          <p style="font-size: 18px; color: var(--color-muted);">No blog posts found.</p>
+          <a href="/blog" style="margin-top: 12px; display: inline-block;">Back to Blog</a>
+        </div>
+      <% } else { %>
+        <div class="blog-grid">
+          <% posts.forEach(function(post) { %>
+            <article class="blog-card">
+              <div class="blog-card-image">
+                <% if (post.cover_image) { %>
+                  <img src="<%= post.cover_image %>" alt="<%= post.title %>" loading="lazy">
+                <% } else { %>
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                <% } %>
+              </div>
+              <div class="blog-card-body">
+                <a href="/blog/category/<%= post.category.toLowerCase().replace(/\s+/g, '-') %>" class="blog-card-category"><%= post.category %></a>
+                <h2 class="blog-card-title">
+                  <a href="/blog/<%= post.slug %>"><%= post.title %></a>
+                </h2>
+                <p class="blog-card-excerpt"><%= post.excerpt %></p>
+                <div class="blog-card-meta">
+                  <span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    <%= post.author %>
+                  </span>
+                  <span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    <%= new Date(post.created_at).toLocaleDateString('en-KE', { year: 'numeric', month: 'short', day: 'numeric' }) %>
+                  </span>
+                </div>
+              </div>
+            </article>
+          <% }); %>
+        </div>
+
+        <!-- Pagination -->
+        <% if (totalPages > 1) { %>
+          <div style="display: flex; justify-content: center; gap: 8px; margin-top: 32px; flex-wrap: wrap;">
+            <% if (page > 1) { %>
+              <a href="<%= activeCategory ? '/blog/category/' + activeCategory.toLowerCase().replace(/\\s+/g, '-') : '/blog' %>?page=<%= page - 1 %>" style="padding: 8px 16px; border: 1px solid #E5E7EB; border-radius: 8px; color: var(--color-body); text-decoration: none;">&laquo; Prev</a>
+            <% } %>
+            <% for (let i = 1; i <= totalPages; i++) { %>
+              <a href="<%= activeCategory ? '/blog/category/' + activeCategory.toLowerCase().replace(/\\s+/g, '-') : '/blog' %>?page=<%= i %>" style="padding: 8px 16px; border: 1px solid <%= i === page ? 'var(--color-primary)' : '#E5E7EB' %>; border-radius: 8px; color: <%= i === page ? 'white' : 'var(--color-body)' %>; background: <%= i === page ? 'var(--color-primary)' : 'white' %>; text-decoration: none;"><%= i %></a>
+            <% } %>
+            <% if (page < totalPages) { %>
+              <a href="<%= activeCategory ? '/blog/category/' + activeCategory.toLowerCase().replace(/\\s+/g, '-') : '/blog' %>?page=<%= page + 1 %>" style="padding: 8px 16px; border: 1px solid #E5E7EB; border-radius: 8px; color: var(--color-body); text-decoration: none;">Next &raquo;</a>
+            <% } %>
+          </div>
+        <% } %>
+      <% } %>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="blog-sidebar">
+      <!-- Search -->
+      <div class="blog-sidebar-section">
+        <h3>Search Blog</h3>
+        <form action="/blog" method="GET" style="display: flex; gap: 8px;">
+          <input type="text" name="q" placeholder="Search articles..." style="flex: 1; padding: 8px 12px; border: 1px solid #E5E7EB; border-radius: 8px; font-size: 13px;">
+          <button type="submit" style="padding: 8px 14px; background: var(--color-primary); color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 13px;">Go</button>
+        </form>
+      </div>
+
+      <!-- Categories -->
+      <div class="blog-sidebar-section">
+        <h3>Categories</h3>
+        <div class="blog-sidebar-categories">
+          <% categories.forEach(function(cat) { %>
+            <a href="/blog/category/<%= cat.category.toLowerCase().replace(/\s+/g, '-') %>">
+              <%= cat.category %>
+              <span><%= cat.count %></span>
+            </a>
+          <% }); %>
+        </div>
+      </div>
+
+      <!-- Recent Posts -->
+      <div class="blog-sidebar-section">
+        <h3>Recent Posts</h3>
+        <% recentPosts.forEach(function(rp) { %>
+          <div class="blog-recent-post">
+            <div class="blog-recent-thumb"></div>
+            <div class="blog-recent-info">
+              <a href="/blog/<%= rp.slug %>"><%= rp.title %></a>
+              <div class="blog-recent-date"><%= new Date(rp.created_at).toLocaleDateString('en-KE', { year: 'numeric', month: 'short', day: 'numeric' }) %></div>
+            </div>
+          </div>
+        <% }); %>
+      </div>
+    </aside>
+  </div>
+</div>

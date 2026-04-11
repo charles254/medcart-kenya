@@ -17,11 +17,11 @@ function index(req, res) {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'MedCart Kenya',
-    url: 'https://medcart.co.ke',
-    logo: 'https://medcart.co.ke/favicon.svg',
+    url: 'https://afyacart.net',
+    logo: 'https://afyacart.net/favicon.svg',
     description: "Kenya's trusted online pharmacy",
     contactPoint: { '@type': 'ContactPoint', telephone: '+254700000000', contactType: 'customer service' },
-    sameAs: ['https://facebook.com/medcartkenya', 'https://instagram.com/medcartkenya', 'https://x.com/medcartkenya'],
+    sameAs: ['https://facebook.com/afyacart', 'https://instagram.com/afyacart', 'https://x.com/afyacart'],
   };
 
   res.render('pages/home', {

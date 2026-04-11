@@ -52,7 +52,7 @@ function sitemap(req, res) {
 
 function sitemapXml(req, res) {
   const db = require('../config/database').getDb();
-  const baseUrl = 'https://medcart.co.ke';
+  const baseUrl = 'https://afyacart.net';
 
   // Static pages
   const staticPages = ['', '/about', '/privacy', '/terms', '/cookies', '/brands', '/deals', '/sitemap'];

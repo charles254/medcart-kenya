@@ -23,6 +23,7 @@ const checkoutRoutes = require('./routes/checkout');
 const dealRoutes = require('./routes/deals');
 const apiRoutes = require('./routes/api');
 const pageRoutes = require('./routes/pages');
+const blogRoutes = require('./routes/blog');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -89,7 +90,7 @@ app.use('/cart', strictLimiter);
 app.use('/checkout', strictLimiter);
 
 app.use(compression());
-app.use(morgan('dev'));
+app.use(morgan(process.env.NODE_ENV === 'production' ? 'combined' : 'dev'));
 
 // Body parsing with size limits
 app.use(express.urlencoded({ extended: true, limit: '1mb' }));
@@ -131,6 +132,7 @@ app.use(cartRoutes);
 app.use(checkoutRoutes);
 app.use(dealRoutes);
 app.use(apiRoutes);
+app.use(blogRoutes);
 app.use(pageRoutes);
 
 // Error handlers

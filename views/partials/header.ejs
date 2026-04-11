@@ -142,6 +142,12 @@
             Health Services
           </a>
         </li>
+        <li class="nav-item">
+          <a href="/blog" class="nav-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            Blog
+          </a>
+        </li>
       </ul>
     </div>
   </nav>
@@ -176,6 +182,7 @@
     <li><a href="/deals" class="mobile-nav-link">Sale &amp; Offers</a></li>
     <li><a href="/brands" class="mobile-nav-link">Shop By Brand</a></li>
     <li><a href="/cart" class="mobile-nav-link">Cart (<%= typeof cartCount !== 'undefined' ? cartCount : 0 %>)</a></li>
+    <li><a href="/blog" class="mobile-nav-link">Blog</a></li>
     <% if (typeof topCategories !== 'undefined' && topCategories) { %>
       <li class="mobile-nav-divider">Categories</li>
       <% topCategories.forEach(function(cat) { %>

@@ -22,7 +22,7 @@ function show(req, res) {
     '@type': 'Product',
     name: product.title,
     description: product.enhanced_description || product.description || product.title,
-    image: product.primary_image || 'https://medcart.co.ke/images/placeholder.svg',
+    image: product.primary_image || 'https://afyacart.net/images/placeholder.svg',
     brand: { '@type': 'Brand', name: product.brand_name || '' },
     sku: product.source_id || String(product.id),
     offers: {
