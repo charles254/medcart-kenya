@@ -37,3 +37,4 @@ public/uploads/prescriptions/*
 # Build
 dist/
 build/
+public/images/products/
