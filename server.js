@@ -67,21 +67,26 @@ app.use((req, res, next) => {
   next();
 });
 
-// Security: Rate limiting
+// Trust proxy (Apache reverse proxy sets X-Forwarded-For)
+app.set('trust proxy', 1);
+
+// Security: Rate limiting (per real client IP via X-Forwarded-For)
 const generalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 1000,
+  max: 5000,
   message: 'Too many requests, please try again later.',
   standardHeaders: true,
   legacyHeaders: false,
+  keyGenerator: (req) => req.ip,
 });
 
 const strictLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 200,
+  max: 500,
   message: 'Too many requests, please try again later.',
   standardHeaders: true,
   legacyHeaders: false,
+  keyGenerator: (req) => req.ip,
 });
 
 app.use(generalLimiter);
