@@ -4026,5 +4026,5 @@ small {
 .footer-bottom p { color: rgba(255,255,255,0.8) !important; }
 
 /* WhatsApp float label */
-.whatsapp-float { background: #1A8B3F !important; }
-.whatsapp-float:hover { background: #157A35 !important; }
+.whatsapp-float { background: #116B30 !important; color: #FFFFFF !important; }
+.whatsapp-float:hover { background: #0D5826 !important; }
