@@ -112,7 +112,7 @@ small {
 .section-header a {
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
-  color: var(--color-primary);
+  color: #007A3D;
   white-space: nowrap;
 }
 
@@ -154,9 +154,9 @@ small {
 }
 
 .btn-primary {
-  background-color: var(--color-primary);
+  background-color: #008C45;
   color: var(--color-white);
-  border-color: var(--color-primary);
+  border-color: #008C45;
 }
 
 .btn-primary:hover {
@@ -283,7 +283,7 @@ small {
 }
 
 .badge-sale {
-  background-color: var(--color-accent);
+  background-color: #E55A2B;
   color: var(--color-white);
 }
 
@@ -438,7 +438,7 @@ small {
 
 .logo-sub {
   font-size: 9px;
-  color: rgba(255,255,255,0.5);
+  color: rgba(255,255,255,0.75);
   letter-spacing: 1.5px;
   text-transform: uppercase;
   margin-top: 2px;
@@ -1068,7 +1068,9 @@ small {
 
 .slide-btn {
   display: inline-block;
-  padding: 12px 32px;
+  padding: 14px 32px;
+  min-height: 48px;
+  min-width: 48px;
   background: white;
   color: #1B3A5C;
   font-size: 14px;
@@ -1136,10 +1138,10 @@ small {
 }
 
 .slider-dot {
-  width: 10px;
-  height: 10px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
-  border: 2px solid rgba(255,255,255,0.5);
+  border: 2px solid rgba(255,255,255,0.8);
   background: transparent;
   cursor: pointer;
   padding: 0;
@@ -1326,7 +1328,7 @@ small {
 
 .category-card-count {
   font-size: 11px;
-  color: var(--color-muted);
+  color: #64748B;
 }
 
 /* ---- Category Pills ---- */
@@ -1418,7 +1420,7 @@ small {
 
 .product-card-brand {
   font-size: 11px;
-  color: var(--color-primary);
+  color: #007A3D;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -1434,8 +1436,9 @@ small {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  line-height: 1.3;
-  min-height: 36px;
+  line-height: 1.5;
+  min-height: 42px;
+  padding: 2px 0;
 }
 
 .product-card-title a {
@@ -1464,7 +1467,7 @@ small {
 
 .price-original {
   font-size: 13px;
-  color: var(--color-muted);
+  color: #6B7280;
   text-decoration: line-through;
   margin-left: 8px;
 }
@@ -1481,9 +1484,10 @@ small {
 
 .product-card-action .btn {
   width: 100%;
-  padding: 8px;
+  padding: 10px 8px;
+  min-height: 44px;
   border-radius: 8px;
-  background: var(--color-primary);
+  background: #008C45;
   color: white;
   font-size: 13px;
   font-weight: 600;
@@ -1938,6 +1942,7 @@ small {
 .product-add-to-cart .btn {
   flex: 1;
   padding: var(--space-4) var(--space-6);
+  min-height: 48px;
   font-size: var(--font-size-base);
 }
 
@@ -2458,7 +2463,7 @@ small {
 
 .brand-card-count {
   font-size: 11px;
-  color: var(--color-muted);
+  color: #64748B;
 }
 
 /* ==================================
@@ -2840,7 +2845,8 @@ small {
   margin-bottom: var(--space-8);
 }
 
-.footer-col h4 {
+.footer-col h4,
+.footer-col .footer-heading {
   color: var(--color-white);
   font-size: var(--font-size-base);
   margin-bottom: var(--space-4);
@@ -2861,7 +2867,7 @@ small {
 
 .footer-tagline {
   font-size: 9px;
-  color: rgba(255,255,255,0.4);
+  color: rgba(255,255,255,0.75);
   letter-spacing: 1.5px;
   text-transform: uppercase;
   margin-bottom: 12px;
@@ -2917,7 +2923,7 @@ small {
   padding: var(--space-4) 0;
   text-align: center;
   font-size: var(--font-size-xs);
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.75);
 }
 
 /* ==================================
@@ -3372,10 +3378,11 @@ small {
   margin-bottom: 20px;
 }
 
-.footer-payments h4 {
+.footer-payments h4,
+.footer-payments .footer-heading {
   font-size: 13px;
   font-weight: 600;
-  color: rgba(255,255,255,0.6);
+  color: rgba(255,255,255,0.75);
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 16px;
@@ -3409,7 +3416,7 @@ small {
   justify-content: center;
   gap: 6px;
   font-size: 11px;
-  color: rgba(255,255,255,0.5);
+  color: rgba(255,255,255,0.75);
   margin: 0;
 }
 
@@ -3441,7 +3448,7 @@ small {
 
 .footer-licensing p {
   font-size: 12px;
-  color: rgba(255,255,255,0.7);
+  color: rgba(255,255,255,0.8);
   line-height: 1.5;
   margin: 4px 0;
 }
@@ -3451,7 +3458,7 @@ small {
   font-size: 13px;
 }
 .footer-bottom-links a {
-  color: rgba(255,255,255,0.7);
+  color: rgba(255,255,255,0.8);
   transition: color 0.2s;
 }
 .footer-bottom-links a:hover {
@@ -3459,7 +3466,7 @@ small {
 }
 .footer-bottom-links span {
   margin: 0 8px;
-  color: rgba(255,255,255,0.4);
+  color: rgba(255,255,255,0.6);
 }
 
 /* ============================================
@@ -3967,3 +3974,22 @@ small {
 
 /* Blog disclaimer */
 .blog-disclaimer { background: #FEF3C7; border: 1px solid #FDE68A; border-radius: 10px; padding: 16px 20px; margin: 24px 0; font-size: 13px; color: #92400E; line-height: 1.6; }
+
+/* ============================================
+   ACCESSIBILITY FIXES - Contrast & Touch Targets
+   ============================================ */
+
+/* Fix #13: Search button contrast - darken green bg for white text */
+.search-bar button,
+.hero-search .search-bar button {
+  background-color: #008C45;
+}
+
+/* Fix #20: Footer heading semantic fix - style div.footer-heading like h4 */
+.footer-heading {
+  color: var(--color-white);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  margin-bottom: var(--space-3);
+  font-size: var(--font-size-xl);
+}
