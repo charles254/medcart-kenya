@@ -70,7 +70,7 @@ app.use((req, res, next) => {
 // Security: Rate limiting
 const generalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 200,
+  max: 1000,
   message: 'Too many requests, please try again later.',
   standardHeaders: true,
   legacyHeaders: false,
@@ -78,7 +78,7 @@ const generalLimiter = rateLimit({
 
 const strictLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 50,
+  max: 200,
   message: 'Too many requests, please try again later.',
   standardHeaders: true,
   legacyHeaders: false,
