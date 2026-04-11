@@ -178,9 +178,9 @@ small {
 }
 
 .btn-accent {
-  background-color: var(--color-accent);
+  background-color: #C73E00;
   color: var(--color-white);
-  border-color: var(--color-accent);
+  border-color: #C73E00;
 }
 
 .btn-accent:hover {
@@ -336,7 +336,7 @@ small {
    TOP BAR
    ================================== */
 .top-bar {
-  background-color: var(--color-primary);
+  background-color: #006432;
   color: var(--color-white);
   font-size: 12px;
   padding: 6px 0;
@@ -584,7 +584,7 @@ small {
   position: absolute;
   top: -4px;
   right: -2px;
-  background-color: var(--color-accent);
+  background-color: #C73E00;
   color: var(--color-white);
   font-size: 10px;
   font-weight: 700;
@@ -672,7 +672,7 @@ small {
 }
 
 .nav-link-highlight {
-  color: var(--color-accent);
+  color: #C73E00;
   font-weight: 600;
 }
 
@@ -788,7 +788,7 @@ small {
   position: absolute;
   top: -8px;
   right: -8px;
-  background-color: var(--color-accent);
+  background-color: #C73E00;
   color: var(--color-white);
   font-size: 11px;
   font-weight: 700;
@@ -1461,8 +1461,8 @@ small {
   color: var(--color-secondary);
 }
 
-.price-sale {
-  color: var(--color-accent);
+.price-sale { color: #C73E00 !important;
+  color: #C73E00;
 }
 
 .price-original {
@@ -1895,7 +1895,7 @@ small {
 }
 
 .product-price-sale {
-  color: var(--color-accent);
+  color: #C73E00;
 }
 
 .product-price-original {
@@ -1907,7 +1907,7 @@ small {
 
 .product-price-savings {
   font-size: var(--font-size-sm);
-  color: var(--color-accent);
+  color: #C73E00;
   font-weight: var(--font-weight-semibold);
   margin-top: var(--space-1);
 }
@@ -3229,7 +3229,7 @@ small {
 .text-right { text-align: right; }
 .text-muted { color: var(--color-muted); }
 .text-primary { color: var(--color-primary); }
-.text-accent { color: var(--color-accent); }
+.text-accent { color: #C73E00; }
 .text-success { color: var(--color-success); }
 .text-error { color: var(--color-error); }
 .font-bold { font-weight: var(--font-weight-bold); }
@@ -3993,3 +3993,38 @@ small {
   margin-bottom: var(--space-3);
   font-size: var(--font-size-xl);
 }
+
+/* =============================================
+   ACCESSIBILITY CONTRAST FIXES (WCAG 2.1 AA)
+   ============================================= */
+
+/* Top bar: dark green bg for white text - 7.5:1 ratio */
+.top-bar { background-color: #006432 !important; }
+.top-bar a { color: #FFFFFF !important; }
+
+/* Buttons: darker green for 4.5:1 with white */
+.btn-primary,
+.product-card-action .btn-primary,
+.header-search-form button,
+.search-bar button { background-color: #006432 !important; }
+.btn-primary:hover,
+.header-search-form button:hover { background-color: #005228 !important; }
+
+/* Sale price: dark orange for 4.5:1 on white */
+.price-sale, .price-current.price-sale { color: #C73E00 !important; }
+
+/* Sale badge: dark orange bg */
+.badge-sale { background-color: #C73E00 !important; }
+
+/* Slide button override */
+.slide-btn[style*="00A651"] { background: #006432 !important; }
+
+/* License badge: ensure contrast on footer */
+.license-badge { background: rgba(0,100,50,0.3) !important; color: #7DEFA0 !important; }
+
+/* Footer copyright */
+.footer-bottom p { color: rgba(255,255,255,0.8) !important; }
+
+/* WhatsApp float label */
+.whatsapp-float { background: #1A8B3F !important; }
+.whatsapp-float:hover { background: #157A35 !important; }
