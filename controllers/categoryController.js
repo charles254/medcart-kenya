@@ -37,7 +37,7 @@ function show(req, res) {
   res.render('pages/category', {
     title: category.name + ' - AfyaCart Kenya',
     metaDescription: 'Browse ' + category.name + ' products at AfyaCart Kenya. ' + result.total + ' products available with fast delivery across Kenya.',
-    canonicalPath: '/category/' + category.slug,
+    canonicalPath: '/category/' + category.slug + (page > 1 ? '?page=' + page : ''),
     category,
     children,
     ancestors,

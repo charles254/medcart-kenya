@@ -30,7 +30,13 @@
 
   <!-- JSON-LD Structured Data -->
   <% if (typeof jsonLd !== 'undefined' && jsonLd) { %>
-    <script type="application/ld+json"><%- JSON.stringify(jsonLd) %></script>
+    <% if (Array.isArray(jsonLd)) { %>
+      <% jsonLd.forEach(function(schema) { %>
+        <script type="application/ld+json"><%- JSON.stringify(schema) %></script>
+      <% }); %>
+    <% } else { %>
+      <script type="application/ld+json"><%- JSON.stringify(jsonLd) %></script>
+    <% } %>
   <% } %>
 
   <!-- Favicon -->

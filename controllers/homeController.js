@@ -24,11 +24,24 @@ function index(req, res) {
     sameAs: ['https://facebook.com/afyacart', 'https://instagram.com/afyacart', 'https://x.com/afyacart'],
   };
 
+  const websiteJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'AfyaCart Kenya',
+    alternateName: ['AfyaCart', 'Afya Cart'],
+    url: 'https://afyacart.net',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: { '@type': 'EntryPoint', urlTemplate: 'https://afyacart.net/search?q={search_term_string}' },
+      'query-input': 'required name=search_term_string',
+    },
+  };
+
   res.render('pages/home', {
     title: 'AfyaCart Kenya - Online Pharmacy',
     metaDescription: 'Shop 8,000+ medicines, vitamins, supplements and health products online. Fast delivery across Kenya.',
     canonicalPath: '',
-    jsonLd: orgJsonLd,
+    jsonLd: [orgJsonLd, websiteJsonLd],
     categories,
     trending,
     deals: deals.products,
