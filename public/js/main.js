@@ -1,5 +1,5 @@
 /**
- * MedCart Kenya - Main JavaScript
+ * AfyaCart Kenya - Main JavaScript
  * Handles: mobile navigation, image fallbacks, filter toggles
  */
 (function() {

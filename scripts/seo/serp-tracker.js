@@ -213,7 +213,7 @@ async function trackSERPs() {
   console.log(`  CSV report: ${csvPath}`);
 
   if (rankingResults.length > 0) {
-    console.log('\n--- Keywords Where MedCart Ranks ---');
+    console.log('\n--- Keywords Where AfyaCart Ranks ---');
     rankingResults.forEach((r, i) => {
       const status = r.position <= 3 ? '🥇' : r.position <= 10 ? '✅' : r.position <= 20 ? '🔶' : '⬜';
       console.log(`  ${status} #${String(r.position).padStart(3)} "${r.keyword}"`);

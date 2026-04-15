@@ -35,8 +35,8 @@ function show(req, res) {
   const brandsInCategory = Brand.getByCategory(category.id);
 
   res.render('pages/category', {
-    title: category.name + ' - MedCart Kenya',
-    metaDescription: 'Browse ' + category.name + ' products at MedCart Kenya. ' + result.total + ' products available with fast delivery across Kenya.',
+    title: category.name + ' - AfyaCart Kenya',
+    metaDescription: 'Browse ' + category.name + ' products at AfyaCart Kenya. ' + result.total + ' products available with fast delivery across Kenya.',
     canonicalPath: '/category/' + category.slug,
     category,
     children,

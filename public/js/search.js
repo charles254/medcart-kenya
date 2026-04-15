@@ -1,5 +1,5 @@
 /**
- * MedCart Kenya - Search Autocomplete
+ * AfyaCart Kenya - Search Autocomplete
  * Debounced autocomplete: fetches /api/search?q=TERM and renders dropdown
  */
 (function() {

@@ -10,8 +10,8 @@ function show(req, res) {
   }
 
   res.render('pages/checkout', {
-    title: 'Checkout - MedCart Kenya',
-    metaDescription: 'Complete your order at MedCart Kenya.',
+    title: 'Checkout - AfyaCart Kenya',
+    metaDescription: 'Complete your order at AfyaCart Kenya.',
     canonicalPath: '/checkout',
     noindex: true,
     cart,
@@ -45,8 +45,8 @@ function process(req, res) {
   if (errors.length > 0) {
     const total = Cart.getTotal(req.session);
     return res.render('pages/checkout', {
-      title: 'Checkout - MedCart Kenya',
-      metaDescription: 'Complete your order at MedCart Kenya.',
+      title: 'Checkout - AfyaCart Kenya',
+      metaDescription: 'Complete your order at AfyaCart Kenya.',
       canonicalPath: '/checkout',
       noindex: true,
       cart,
@@ -74,8 +74,8 @@ function success(req, res) {
   const order = req.session.lastOrder;
 
   res.render('pages/checkout-success', {
-    title: 'Order Confirmed - MedCart Kenya',
-    metaDescription: 'Your order has been confirmed at MedCart Kenya.',
+    title: 'Order Confirmed - AfyaCart Kenya',
+    metaDescription: 'Your order has been confirmed at AfyaCart Kenya.',
     canonicalPath: '/checkout/success',
     noindex: true,
     order: order || null,

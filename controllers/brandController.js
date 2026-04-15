@@ -16,8 +16,8 @@ function index(req, res) {
   }
 
   res.render('pages/brands-index', {
-    title: 'All Brands - MedCart Kenya',
-    metaDescription: 'Browse all pharmacy brands available at MedCart Kenya. Find trusted medicine and health product brands.',
+    title: 'All Brands - AfyaCart Kenya',
+    metaDescription: 'Browse all pharmacy brands available at AfyaCart Kenya. Find trusted medicine and health product brands.',
     canonicalPath: '/brands',
     grouped,
     letters: Object.keys(grouped).sort(),
@@ -50,8 +50,8 @@ function show(req, res) {
   `).all(brand.id, ITEMS_PER_PAGE, offset);
 
   res.render('pages/brand', {
-    title: `${brand.name} - MedCart Kenya`,
-    metaDescription: `Browse ${brand.name} products at MedCart Kenya. ${total} products available with fast delivery across Kenya.`,
+    title: `${brand.name} - AfyaCart Kenya`,
+    metaDescription: `Browse ${brand.name} products at AfyaCart Kenya. ${total} products available with fast delivery across Kenya.`,
     canonicalPath: '/brand/' + brand.slug,
     brand,
     products,

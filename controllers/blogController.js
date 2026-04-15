@@ -7,18 +7,18 @@ function index(req, res) {
   const recentPosts = Blog.getRecent(4);
 
   res.render('pages/blog', {
-    title: 'Health Blog - MedCart Kenya',
-    metaDescription: 'Expert health tips, wellness guides, pharmacy insights and more from MedCart Kenya. Stay informed about your health.',
+    title: 'Health Blog - AfyaCart Kenya',
+    metaDescription: 'Expert health tips, wellness guides, pharmacy insights and more from AfyaCart Kenya. Stay informed about your health.',
     canonicalPath: page > 1 ? `/blog?page=${page}` : '/blog',
     jsonLd: {
       '@context': 'https://schema.org',
       '@type': 'Blog',
-      name: 'MedCart Health Blog',
+      name: 'AfyaCart Health Blog',
       description: 'Expert health tips, wellness guides, and pharmacy insights',
       url: 'https://afyacart.net/blog',
       publisher: {
         '@type': 'Organization',
-        name: 'MedCart Kenya',
+        name: 'AfyaCart Kenya',
       },
     },
     posts,
@@ -35,7 +35,7 @@ function show(req, res) {
   const post = Blog.findBySlug(req.params.slug);
   if (!post) {
     return res.status(404).render('pages/404', {
-      title: 'Post Not Found - MedCart Kenya',
+      title: 'Post Not Found - AfyaCart Kenya',
       metaDescription: 'The blog post you are looking for could not be found.',
       canonicalPath: '/blog',
     });
@@ -46,7 +46,7 @@ function show(req, res) {
   const relatedPosts = Blog.getRelated(post.id, post.category, 3);
 
   res.render('pages/blog-post', {
-    title: `${post.title} - MedCart Blog`,
+    title: `${post.title} - AfyaCart Blog`,
     metaDescription: post.excerpt || post.title,
     canonicalPath: `/blog/${post.slug}`,
     ogType: 'article',
@@ -61,7 +61,7 @@ function show(req, res) {
       },
       publisher: {
         '@type': 'Organization',
-        name: 'MedCart Kenya',
+        name: 'AfyaCart Kenya',
       },
       datePublished: post.created_at,
       dateModified: post.updated_at,
@@ -87,8 +87,8 @@ function category(req, res) {
   const recentPosts = Blog.getRecent(4);
 
   res.render('pages/blog', {
-    title: `${categoryName} - MedCart Blog`,
-    metaDescription: `Read our latest ${categoryName} articles and tips from MedCart Kenya.`,
+    title: `${categoryName} - AfyaCart Blog`,
+    metaDescription: `Read our latest ${categoryName} articles and tips from AfyaCart Kenya.`,
     canonicalPath: `/blog/category/${req.params.category}`,
     jsonLd: null,
     posts,

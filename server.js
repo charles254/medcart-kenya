@@ -116,7 +116,7 @@ app.use(session({
   secret: process.env.SESSION_SECRET || 'pharmacy-ecommerce-secret-key',
   resave: false,
   saveUninitialized: false,
-  name: 'medcart.sid',
+  name: 'afyacart.sid',
   cookie: {
     maxAge: 24 * 60 * 60 * 1000, // 1 day (reduced from 7 days)
     httpOnly: true,

@@ -1,5 +1,5 @@
 /**
- * MedCart Kenya - Cart JavaScript
+ * AfyaCart Kenya - Cart JavaScript
  * AJAX add-to-cart, quantity controls, and remove buttons
  */
 (function() {

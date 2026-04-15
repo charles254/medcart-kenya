@@ -8,8 +8,8 @@ function show(req, res) {
   const hasRxItems = Cart.hasRxItems(req.session);
 
   res.render('pages/cart', {
-    title: 'Shopping Cart - MedCart Kenya',
-    metaDescription: 'Your MedCart Kenya shopping cart.',
+    title: 'Shopping Cart - AfyaCart Kenya',
+    metaDescription: 'Your AfyaCart Kenya shopping cart.',
     canonicalPath: '/cart',
     noindex: true,
     cart,

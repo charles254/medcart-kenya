@@ -14,7 +14,7 @@ db.exec(`
       excerpt TEXT,
       content TEXT NOT NULL,
       cover_image TEXT,
-      author TEXT DEFAULT 'MedCart Team',
+      author TEXT DEFAULT 'AfyaCart Team',
       category TEXT DEFAULT 'Health Tips',
       tags TEXT,
       published INTEGER DEFAULT 1,
@@ -47,7 +47,7 @@ It is important to note that both medications have maximum daily dosages. For ad
 
 Some people should avoid certain pain relievers entirely. Those with liver conditions should be cautious with paracetamol, while individuals with kidney problems, asthma, or stomach ulcers should avoid ibuprofen. Pregnant women should consult their doctor before taking either medication.
 
-At MedCart, our pharmacists are always available to help you choose the right pain relief option. Never hesitate to ask for professional advice.
+At AfyaCart, our pharmacists are always available to help you choose the right pain relief option. Never hesitate to ask for professional advice.
 
 Disclaimer: This article is for informational purposes only. Always consult a healthcare professional before starting any medication.`,
     category: 'Medicine Guide',
@@ -85,7 +85,7 @@ Before starting any supplement regimen, consult with a healthcare professional t
 Disclaimer: This article is for informational purposes only. Always consult a healthcare professional before starting any medication.`,
     category: 'Nutrition',
     tags: 'vitamins;supplements;nutrition;health;wellness',
-    author: 'MedCart Team',
+    author: 'AfyaCart Team',
   },
   {
     title: 'How to Build a Home First Aid Kit: A Complete Guide',
@@ -110,7 +110,7 @@ Review and restock your first aid kit every six months. Check expiry dates on al
 Disclaimer: This article is for informational purposes only. Always consult a healthcare professional before starting any medication.`,
     category: 'Health Tips',
     tags: 'first aid;emergency;home health;safety;medical supplies',
-    author: 'MedCart Team',
+    author: 'AfyaCart Team',
   },
   {
     title: "Skin Care Routines for Kenya's Climate: Expert Tips",
@@ -130,12 +130,12 @@ Hydration starts from within. Drink at least eight glasses of water daily and in
 
 Night-time is when your skin repairs itself. After cleansing, apply a nourishing night cream or facial oil. Ingredients like retinol, niacinamide, and vitamin E can help address specific concerns such as hyperpigmentation, fine lines, and uneven skin tone.
 
-Visit your local MedCart pharmacy for personalised skincare recommendations. Our team can help you find products suited to your skin type and climate.
+Visit your local AfyaCart pharmacy for personalised skincare recommendations. Our team can help you find products suited to your skin type and climate.
 
 Disclaimer: This article is for informational purposes only. Always consult a healthcare professional before starting any medication.`,
     category: 'Skin Care',
     tags: 'skin care;beauty;sunscreen;moisturiser;Kenya climate',
-    author: 'MedCart Team',
+    author: 'AfyaCart Team',
   },
   {
     title: 'Managing Diabetes: Diet, Exercise, and Medication Tips',
@@ -151,7 +151,7 @@ Regular physical activity helps your body use insulin more effectively. Aim for 
 
 Medication adherence is critical for diabetes management. Take your prescribed medications at the same time each day. If you are on insulin, learn proper injection techniques and storage requirements. Never adjust your medication dosage without consulting your healthcare provider.
 
-Regular monitoring of blood sugar levels helps you understand how food, activity, and medication affect your body. Keep a log of your readings to share with your doctor during check-ups. Home glucose monitors are available at MedCart pharmacies.
+Regular monitoring of blood sugar levels helps you understand how food, activity, and medication affect your body. Keep a log of your readings to share with your doctor during check-ups. Home glucose monitors are available at AfyaCart pharmacies.
 
 Foot care is often overlooked but essential for people with diabetes. Check your feet daily for cuts, blisters, or sores. Keep them clean and moisturised, and wear comfortable, well-fitting shoes. Nerve damage from diabetes can reduce sensation in the feet, making injuries easy to miss.
 
@@ -180,7 +180,7 @@ Ear infections often follow a cold or respiratory infection. Watch for signs suc
 
 Keeping your child's vaccinations up to date is one of the most effective ways to prevent serious illnesses. Follow the Kenya Expanded Programme on Immunisation schedule and maintain a vaccination record card.
 
-MedCart pharmacies stock a wide range of child-friendly medications, from flavoured paracetamol syrups to ORS sachets. Our pharmacists can advise on appropriate dosing and treatment options.
+AfyaCart pharmacies stock a wide range of child-friendly medications, from flavoured paracetamol syrups to ORS sachets. Our pharmacists can advise on appropriate dosing and treatment options.
 
 Disclaimer: This article is for informational purposes only. Always consult a healthcare professional before starting any medication.`,
     category: 'Baby Care',
@@ -201,7 +201,7 @@ Recognising the signs of dehydration is important. Early symptoms include thirst
 
 Electrolytes are minerals that carry an electric charge and are essential for various bodily functions. Sodium, potassium, calcium, and magnesium are the key electrolytes. They help regulate nerve and muscle function, maintain fluid balance, and support bone health. When you sweat, you lose both water and electrolytes.
 
-During intense physical activity, hot weather, or illness involving vomiting or diarrhoea, plain water may not be enough. Oral rehydration solutions containing the right balance of water, salts, and sugar are the most effective way to rehydrate. These are readily available at MedCart pharmacies in convenient sachet form.
+During intense physical activity, hot weather, or illness involving vomiting or diarrhoea, plain water may not be enough. Oral rehydration solutions containing the right balance of water, salts, and sugar are the most effective way to rehydrate. These are readily available at AfyaCart pharmacies in convenient sachet form.
 
 Sports drinks can be useful for athletes engaging in prolonged exercise but often contain excessive sugar. For everyday hydration, water remains the best choice. You can enhance your water intake by eating water-rich foods such as watermelon, oranges, cucumbers, and spinach.
 
@@ -210,7 +210,7 @@ Make hydration a habit by carrying a reusable water bottle, setting reminders to
 Disclaimer: This article is for informational purposes only. Always consult a healthcare professional before starting any medication.`,
     category: 'Lifestyle',
     tags: 'hydration;water;electrolytes;dehydration;health tips',
-    author: 'MedCart Team',
+    author: 'AfyaCart Team',
   },
   {
     title: 'Understanding Prescription Medications: What You Need to Know',
@@ -230,7 +230,7 @@ Proper storage of medications is essential for maintaining their effectiveness. 
 
 Never share your prescription medications with others, even if they appear to have similar symptoms. Medications are prescribed based on individual factors such as age, weight, medical history, and other medications being taken. What works safely for one person may be harmful to another.
 
-At MedCart pharmacies, our qualified pharmacists are available to answer your questions about prescription medications, help you understand potential interactions, and provide guidance on proper usage and storage.
+At AfyaCart pharmacies, our qualified pharmacists are available to answer your questions about prescription medications, help you understand potential interactions, and provide guidance on proper usage and storage.
 
 Disclaimer: This article is for informational purposes only. Always consult a healthcare professional before starting any medication.`,
     category: 'Medicine Guide',

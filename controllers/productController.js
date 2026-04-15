@@ -30,12 +30,12 @@ function show(req, res) {
       price: product.sale_price || product.price,
       priceCurrency: 'KES',
       availability: product.in_stock ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
-      seller: { '@type': 'Organization', name: 'MedCart Kenya' },
+      seller: { '@type': 'Organization', name: 'AfyaCart Kenya' },
     },
   };
 
   res.render('pages/product', {
-    title: `${product.title} - MedCart Kenya`,
+    title: `${product.title} - AfyaCart Kenya`,
     metaDescription: (product.enhanced_description || product.description || product.title).substring(0, 160),
     canonicalPath: '/product/' + product.slug,
     ogType: 'product',
@@ -56,8 +56,8 @@ function search(req, res) {
   }
 
   res.render('pages/search-results', {
-    title: query ? `Search: ${query} - MedCart Kenya` : 'Search - MedCart Kenya',
-    metaDescription: query ? `Search results for "${query}" at MedCart Kenya.` : 'Search for medicines and health products at MedCart Kenya.',
+    title: query ? `Search: ${query} - AfyaCart Kenya` : 'Search - AfyaCart Kenya',
+    metaDescription: query ? `Search results for "${query}" at AfyaCart Kenya.` : 'Search for medicines and health products at AfyaCart Kenya.',
     canonicalPath: '/search',
     noindex: true,
     query,

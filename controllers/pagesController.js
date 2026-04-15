@@ -1,31 +1,31 @@
 function about(req, res) {
   res.render('pages/about', {
-    title: 'About Us - MedCart Kenya',
-    metaDescription: 'Learn about MedCart Kenya, your trusted online pharmacy delivering medicines and health products across Kenya.',
+    title: 'About Us - AfyaCart Kenya',
+    metaDescription: 'Learn about AfyaCart Kenya, your trusted online pharmacy delivering medicines and health products across Kenya.',
     canonicalPath: '/about',
   });
 }
 
 function privacy(req, res) {
   res.render('pages/privacy', {
-    title: 'Privacy Policy - MedCart Kenya',
-    metaDescription: 'Read the MedCart Kenya privacy policy. Learn how we collect, use, and protect your personal information.',
+    title: 'Privacy Policy - AfyaCart Kenya',
+    metaDescription: 'Read the AfyaCart Kenya privacy policy. Learn how we collect, use, and protect your personal information.',
     canonicalPath: '/privacy',
   });
 }
 
 function terms(req, res) {
   res.render('pages/terms', {
-    title: 'Terms & Conditions - MedCart Kenya',
-    metaDescription: 'MedCart Kenya terms and conditions. Review the rules and guidelines for using our online pharmacy services.',
+    title: 'Terms & Conditions - AfyaCart Kenya',
+    metaDescription: 'AfyaCart Kenya terms and conditions. Review the rules and guidelines for using our online pharmacy services.',
     canonicalPath: '/terms',
   });
 }
 
 function cookies(req, res) {
   res.render('pages/cookies', {
-    title: 'Cookie Policy - MedCart Kenya',
-    metaDescription: 'MedCart Kenya cookie policy. Understand how we use cookies to improve your browsing experience.',
+    title: 'Cookie Policy - AfyaCart Kenya',
+    metaDescription: 'AfyaCart Kenya cookie policy. Understand how we use cookies to improve your browsing experience.',
     canonicalPath: '/cookies',
   });
 }
@@ -42,8 +42,8 @@ function sitemap(req, res) {
   const popularBrands = Brand.getPopular(30);
 
   res.render('pages/sitemap', {
-    title: 'Sitemap - MedCart Kenya',
-    metaDescription: 'Browse the full MedCart Kenya sitemap. Find all categories, brands, and products available on our online pharmacy.',
+    title: 'Sitemap - AfyaCart Kenya',
+    metaDescription: 'Browse the full AfyaCart Kenya sitemap. Find all categories, brands, and products available on our online pharmacy.',
     canonicalPath: '/sitemap',
     categories,
     popularBrands,

@@ -76,7 +76,7 @@ const doc = new Document({
     },
     headers: {
       default: new Header({ children: [new Paragraph({ alignment: AlignmentType.RIGHT,
-        children: [new TextRun({ text: "MedCart Kenya \u2014 DataForSEO Strategy Plan", font: "Arial", size: 16, color: "999999", italics: true })] })] })
+        children: [new TextRun({ text: "AfyaCart Kenya \u2014 DataForSEO Strategy Plan", font: "Arial", size: 16, color: "999999", italics: true })] })] })
     },
     footers: {
       default: new Footer({ children: [new Paragraph({ alignment: AlignmentType.CENTER,
@@ -96,7 +96,7 @@ const doc = new Document({
         children: [new TextRun({ text: "Keyword Research, Competitor Analysis & Content Strategy", font: "Arial", size: 22, color: "555555" })] }),
       new Paragraph({ spacing: { before: 600 } }),
       new Paragraph({ alignment: AlignmentType.CENTER,
-        children: [new TextRun({ text: "Prepared for: MedCart Kenya E-Commerce Team", font: "Arial", size: 20, color: "777777" })] }),
+        children: [new TextRun({ text: "Prepared for: AfyaCart Kenya E-Commerce Team", font: "Arial", size: 20, color: "777777" })] }),
       new Paragraph({ alignment: AlignmentType.CENTER,
         children: [new TextRun({ text: "Date: April 2026", font: "Arial", size: 20, color: "777777" })] }),
       new Paragraph({ alignment: AlignmentType.CENTER,
@@ -108,7 +108,7 @@ const doc = new Document({
       heading("Table of Contents"),
       para("1. Executive Summary"),
       para("2. DataForSEO Overview & API Products"),
-      para("3. Strategic Use Cases for MedCart Kenya"),
+      para("3. Strategic Use Cases for AfyaCart Kenya"),
       para("4. Implementation Roadmap"),
       para("5. API Integration Architecture"),
       para("6. Budget Estimation"),
@@ -119,8 +119,8 @@ const doc = new Document({
 
       // ==================== 1. EXECUTIVE SUMMARY ====================
       heading("1. Executive Summary"),
-      para("MedCart Kenya operates an online pharmacy e-commerce platform with 8,800+ health products sourced from MyDawa and Goodlife Pharmacy. To accelerate organic growth and outperform competitors in the Kenyan online pharmacy market, we propose integrating DataForSEO APIs into our digital marketing stack."),
-      para("DataForSEO provides pay-per-use APIs covering SERP tracking, keyword research, competitor analysis, backlink monitoring, on-page auditing, and content analysis. This plan outlines how MedCart Kenya can leverage these APIs to:"),
+      para("AfyaCart Kenya operates an online pharmacy e-commerce platform with 8,800+ health products sourced from MyDawa and Goodlife Pharmacy. To accelerate organic growth and outperform competitors in the Kenyan online pharmacy market, we propose integrating DataForSEO APIs into our digital marketing stack."),
+      para("DataForSEO provides pay-per-use APIs covering SERP tracking, keyword research, competitor analysis, backlink monitoring, on-page auditing, and content analysis. This plan outlines how AfyaCart Kenya can leverage these APIs to:"),
       bullet("Identify high-value pharmacy and health keywords in the Kenyan market"),
       bullet("Track search engine rankings for 8,800+ product pages"),
       bullet("Monitor competitor strategies (MyDawa, Goodlife, Pharmaplus)"),
@@ -135,7 +135,7 @@ const doc = new Document({
       heading("2. DataForSEO Overview & API Products"),
       para("DataForSEO is a comprehensive SEO data provider offering 15+ API products with pay-per-use pricing. Key stats: 7.9 billion Google keywords tracked, 2.1 trillion live backlinks indexed, and coverage of 200+ countries including Kenya."),
 
-      heading("Relevant APIs for MedCart Kenya", HeadingLevel.HEADING_2),
+      heading("Relevant APIs for AfyaCart Kenya", HeadingLevel.HEADING_2),
 
       new Table({
         width: { size: 9360, type: WidthType.DXA },
@@ -169,7 +169,7 @@ const doc = new Document({
       new Paragraph({ children: [new PageBreak()] }),
 
       // ==================== 3. STRATEGIC USE CASES ====================
-      heading("3. Strategic Use Cases for MedCart Kenya"),
+      heading("3. Strategic Use Cases for AfyaCart Kenya"),
 
       heading("3.1 Pharmacy Keyword Research & Discovery", HeadingLevel.HEADING_2),
       para("Use the Keywords Data API to discover high-volume, low-competition pharmacy keywords in Kenya. Focus on:"),
@@ -180,7 +180,7 @@ const doc = new Document({
       para("Action: Run monthly keyword research for 500-1000 seed keywords across health categories. Export to a keyword database for content planning.", { italics: true }),
 
       heading("3.2 Competitor SERP Tracking", HeadingLevel.HEADING_2),
-      para("Track MedCart Kenya rankings vs. competitors for target keywords:"),
+      para("Track AfyaCart Kenya rankings vs. competitors for target keywords:"),
 
       new Table({
         width: { size: 9360, type: WidthType.DXA },
@@ -278,7 +278,7 @@ const doc = new Document({
 
       // ==================== 5. API INTEGRATION ====================
       heading("5. API Integration Architecture"),
-      para("All DataForSEO APIs use REST with HTTP Basic authentication. Integration will be built as Node.js scripts within the MedCart project."),
+      para("All DataForSEO APIs use REST with HTTP Basic authentication. Integration will be built as Node.js scripts within the AfyaCart project."),
 
       heading("Technical Setup", HeadingLevel.HEADING_2),
       bullet("API Base URL: https://api.dataforseo.com/v3/"),
@@ -300,7 +300,7 @@ const doc = new Document({
 
       // ==================== 6. BUDGET ESTIMATION ====================
       heading("6. Budget Estimation"),
-      para("DataForSEO uses pay-per-use pricing with a $50 minimum top-up. Below is the estimated monthly cost for MedCart Kenya:"),
+      para("DataForSEO uses pay-per-use pricing with a $50 minimum top-up. Below is the estimated monthly cost for AfyaCart Kenya:"),
 
       new Table({
         width: { size: 9360, type: WidthType.DXA },
@@ -390,14 +390,14 @@ const doc = new Document({
       para(""),
       para(""),
       new Paragraph({ border: { top: { style: BorderStyle.SINGLE, size: 6, color: "00A651", space: 12 } }, alignment: AlignmentType.CENTER, spacing: { before: 300 },
-        children: [new TextRun({ text: "Prepared by MedCart Kenya Digital Marketing Team", font: "Arial", size: 20, color: "999999", italics: true })] }),
+        children: [new TextRun({ text: "Prepared by AfyaCart Kenya Digital Marketing Team", font: "Arial", size: 20, color: "999999", italics: true })] }),
       new Paragraph({ alignment: AlignmentType.CENTER,
         children: [new TextRun({ text: "For questions, contact: seo@afyacart.net", font: "Arial", size: 20, color: "999999" })] }),
     ]
   }]
 });
 
-const outputPath = "C:/Users/ENG. KIPTOO/Desktop/Firecrawl/MedCart-DataForSEO-Strategy-Plan.docx";
+const outputPath = "C:/Users/ENG. KIPTOO/Desktop/Firecrawl/AfyaCart-DataForSEO-Strategy-Plan.docx";
 Packer.toBuffer(doc).then(buffer => {
   fs.writeFileSync(outputPath, buffer);
   console.log("Document created: " + outputPath);

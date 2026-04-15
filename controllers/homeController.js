@@ -16,7 +16,7 @@ function index(req, res) {
   const orgJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'MedCart Kenya',
+    name: 'AfyaCart Kenya',
     url: 'https://afyacart.net',
     logo: 'https://afyacart.net/favicon.svg',
     description: "Kenya's trusted online pharmacy",
@@ -25,7 +25,7 @@ function index(req, res) {
   };
 
   res.render('pages/home', {
-    title: 'MedCart Kenya - Online Pharmacy',
+    title: 'AfyaCart Kenya - Online Pharmacy',
     metaDescription: 'Shop 8,000+ medicines, vitamins, supplements and health products online. Fast delivery across Kenya.',
     canonicalPath: '',
     jsonLd: orgJsonLd,

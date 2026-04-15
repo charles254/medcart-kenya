@@ -6,8 +6,8 @@ function index(req, res) {
   const result = Product.getDeals(page, ITEMS_PER_PAGE);
 
   res.render('pages/deals', {
-    title: 'Deals & Offers - MedCart Kenya',
-    metaDescription: 'Discover the best deals and offers on medicines, supplements, and health products at MedCart Kenya.',
+    title: 'Deals & Offers - AfyaCart Kenya',
+    metaDescription: 'Discover the best deals and offers on medicines, supplements, and health products at AfyaCart Kenya.',
     canonicalPath: '/deals',
     products: result.products,
     total: result.total,

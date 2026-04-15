@@ -212,7 +212,7 @@ function generateDescription(product) {
   if (benefit) {
     desc += `Formulated for ${benefit.toLowerCase()}, ${title} provides effective results you can trust. `;
   }
-  desc += `Suitable for adults and families, this product has been carefully selected for the MedCart Kenya catalog from ${brand}'s range of quality products.`;
+  desc += `Suitable for adults and families, this product has been carefully selected for the AfyaCart Kenya catalog from ${brand}'s range of quality products.`;
 
   // Paragraph 3: Key features
   desc += '\n\n';
@@ -230,7 +230,7 @@ function generateDescription(product) {
   if (isRx) {
     desc += 'This is a prescription medicine. A valid prescription is required at checkout. Always consult your doctor or pharmacist before use. ';
   }
-  desc += `Order ${title} from MedCart Kenya, your trusted online pharmacy with free delivery on orders above KES 2,500.`;
+  desc += `Order ${title} from AfyaCart Kenya, your trusted online pharmacy with free delivery on orders above KES 2,500.`;
 
   return desc;
 }
@@ -258,7 +258,7 @@ function generateMetaDescription(product, optimizedTitle) {
     meta += 'Prescription required. ';
   }
 
-  meta += 'Fast delivery across Kenya from MedCart.';
+  meta += 'Fast delivery across Kenya from AfyaCart.';
 
   // Trim to 160 chars
   if (meta.length > 160) {

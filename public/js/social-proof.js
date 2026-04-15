@@ -1,5 +1,5 @@
 /**
- * MedCart Kenya - Social Proof Notifications
+ * AfyaCart Kenya - Social Proof Notifications
  * Shows realistic purchase/activity notifications to build trust
  */
 (function() {

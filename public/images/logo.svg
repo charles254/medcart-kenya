@@ -3,9 +3,9 @@
   <rect x="2" y="12" width="21" height="21" rx="4" fill="#00A651"/>
   <rect x="9" y="16" width="7" height="13" rx="1" fill="white"/>
   <rect x="6" y="19.5" width="13" height="6" rx="1" fill="white"/>
-  <!-- MedCart text -->
+  <!-- AfyaCart text -->
   <text x="30" y="29" font-family="Inter, -apple-system, Segoe UI, sans-serif" font-size="26" font-weight="700" letter-spacing="-0.5">
-    <tspan fill="#FFFFFF">Med</tspan><tspan fill="#4ADE80">Cart</tspan>
+    <tspan fill="#FFFFFF">Afya</tspan><tspan fill="#4ADE80">Cart</tspan>
   </text>
   <!-- Tagline -->
   <text x="30" y="40" font-family="Inter, -apple-system, Segoe UI, sans-serif" font-size="8.5" fill="rgba(255,255,255,0.5)" letter-spacing="1.2">PHARMACY  &bull;  HEALTH  &bull;  BEAUTY</text>
