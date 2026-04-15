@@ -79,7 +79,7 @@ function show(req, res) {
     name: product.title,
     description: product.enhanced_description || product.description || product.title,
     image: absoluteImage,
-    brand: { '@type': 'Brand', name: product.brand_name || '' },
+    ...(product.brand_name ? { brand: { '@type': 'Brand', name: product.brand_name } } : {}),
     sku: product.source_id || String(product.id),
     mpn: product.source_id || String(product.id),
     aggregateRating: {
@@ -137,7 +137,13 @@ function show(req, res) {
 
   res.render('pages/product', {
     title: `${product.title} - AfyaCart Kenya`,
-    metaDescription: (product.enhanced_description || product.description || product.title).substring(0, 160),
+    metaDescription: (() => {
+      const desc = (product.enhanced_description || product.description || product.title);
+      if (desc.length <= 155) return desc;
+      const trimmed = desc.substring(0, 155);
+      const lastSpace = trimmed.lastIndexOf(' ');
+      return (lastSpace > 100 ? trimmed.substring(0, lastSpace) : trimmed) + '...';
+    })(),
     canonicalPath: '/product/' + product.slug,
     ogType: 'product',
     ogImage: hasRealImage ? absoluteImage : undefined,

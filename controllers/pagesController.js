@@ -54,11 +54,18 @@ function sitemapXml(req, res) {
   const db = require('../config/database').getDb();
   const baseUrl = 'https://afyacart.net';
 
-  const staticPages = ['', '/about', '/privacy', '/terms', '/cookies', '/brands', '/deals', '/sitemap'];
+  const staticPages = ['', '/about', '/privacy', '/terms', '/cookies', '/brands', '/deals', '/sitemap', '/blog'];
   const categories = db.prepare('SELECT slug FROM categories WHERE level = 0').all();
   const products = db.prepare('SELECT slug, title, primary_image FROM products WHERE in_stock = 1 ORDER BY stock_quantity DESC LIMIT 5000').all();
   const brands = db.prepare('SELECT slug FROM brands WHERE product_count > 0 ORDER BY product_count DESC LIMIT 500').all();
 
+  // Blog posts
+  let blogPosts = [];
+  try {
+    blogPosts = db.prepare('SELECT slug, updated_at FROM blog_posts ORDER BY created_at DESC').all();
+  } catch { /* blog table may not exist */ }
+
+  const today = new Date().toISOString().split('T')[0];
   const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
   let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
@@ -66,11 +73,11 @@ function sitemapXml(req, res) {
   xml += '        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n';
 
   staticPages.forEach(path => {
-    xml += `  <url><loc>${baseUrl}${path}</loc><changefreq>weekly</changefreq><priority>${path === '' ? '1.0' : '0.5'}</priority></url>\n`;
+    xml += `  <url><loc>${baseUrl}${path}</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>${path === '' ? '1.0' : '0.5'}</priority></url>\n`;
   });
 
   categories.forEach(c => {
-    xml += `  <url><loc>${baseUrl}/category/${c.slug}</loc><changefreq>daily</changefreq><priority>0.8</priority></url>\n`;
+    xml += `  <url><loc>${baseUrl}/category/${c.slug}</loc><lastmod>${today}</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>\n`;
   });
 
   products.forEach(p => {
@@ -84,7 +91,12 @@ function sitemapXml(req, res) {
   });
 
   brands.forEach(b => {
-    xml += `  <url><loc>${baseUrl}/brand/${b.slug}</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>\n`;
+    xml += `  <url><loc>${baseUrl}/brand/${b.slug}</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url>\n`;
+  });
+
+  blogPosts.forEach(post => {
+    const lastmod = post.updated_at ? post.updated_at.split(' ')[0] : today;
+    xml += `  <url><loc>${baseUrl}/blog/${post.slug}</loc><lastmod>${lastmod}</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>\n`;
   });
 
   xml += '</urlset>';

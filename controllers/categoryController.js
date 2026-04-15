@@ -34,10 +34,36 @@ function show(req, res) {
   // Get brands available in this category for the filter sidebar
   const brandsInCategory = Brand.getByCategory(category.id);
 
+  const baseUrl = 'https://afyacart.net';
+  const breadcrumbItems = [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: baseUrl },
+    ...ancestors.map((a, i) => ({
+      '@type': 'ListItem', position: i + 2, name: a.name, item: `${baseUrl}/category/${a.slug}`,
+    })),
+    { '@type': 'ListItem', position: ancestors.length + 2, name: category.name },
+  ];
+
+  const categoryJsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: breadcrumbItems,
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: category.name,
+      url: `${baseUrl}/category/${category.slug}`,
+      description: `Browse ${category.name} products at AfyaCart Kenya. ${result.total} products available.`,
+      numberOfItems: result.total,
+    },
+  ];
+
   res.render('pages/category', {
     title: category.name + ' - AfyaCart Kenya',
     metaDescription: 'Browse ' + category.name + ' products at AfyaCart Kenya. ' + result.total + ' products available with fast delivery across Kenya.',
     canonicalPath: '/category/' + category.slug + (page > 1 ? '?page=' + page : ''),
+    jsonLd: categoryJsonLd,
     category,
     children,
     ancestors,

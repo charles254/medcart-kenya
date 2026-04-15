@@ -49,10 +49,30 @@ function show(req, res) {
     LIMIT ? OFFSET ?
   `).all(brand.id, ITEMS_PER_PAGE, offset);
 
+  const baseUrl = 'https://afyacart.net';
+  const brandJsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: baseUrl },
+        { '@type': 'ListItem', position: 2, name: 'Brands', item: `${baseUrl}/brands` },
+        { '@type': 'ListItem', position: 3, name: brand.name },
+      ],
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Brand',
+      name: brand.name,
+      url: `${baseUrl}/brand/${brand.slug}`,
+    },
+  ];
+
   res.render('pages/brand', {
     title: `${brand.name} - AfyaCart Kenya`,
     metaDescription: `Browse ${brand.name} products at AfyaCart Kenya. ${total} products available with fast delivery across Kenya.`,
     canonicalPath: '/brand/' + brand.slug,
+    jsonLd: brandJsonLd,
     brand,
     products,
     total,

@@ -3,5 +3,6 @@ Allow: /
 Disallow: /api/
 Disallow: /cart
 Disallow: /checkout
+Disallow: /search
 
 Sitemap: https://afyacart.net/sitemap.xml
