@@ -101,6 +101,21 @@ app.use(morgan(process.env.NODE_ENV === 'production' ? 'combined' : 'dev'));
 app.use(express.urlencoded({ extended: true, limit: '1mb' }));
 app.use(express.json({ limit: '1mb' }));
 
+// WebP auto-serve: serve .webp when browser supports it and file exists
+const fs = require('fs');
+app.use('/images/products', (req, res, next) => {
+  const accepts = req.headers.accept || '';
+  if (accepts.includes('image/webp') && (req.path.endsWith('.jpg') || req.path.endsWith('.jpeg') || req.path.endsWith('.png'))) {
+    const webpPath = req.path.replace(/\.(jpg|jpeg|png)$/, '.webp');
+    const fullPath = path.join(__dirname, 'public', 'images', 'products', webpPath);
+    if (fs.existsSync(fullPath)) {
+      res.type('image/webp');
+      return res.sendFile(fullPath);
+    }
+  }
+  next();
+});
+
 // Static files
 app.use(express.static(path.join(__dirname, 'public')));
 

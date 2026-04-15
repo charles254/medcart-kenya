@@ -81,6 +81,7 @@ function show(req, res) {
     image: absoluteImage,
     brand: { '@type': 'Brand', name: product.brand_name || '' },
     sku: product.source_id || String(product.id),
+    mpn: product.source_id || String(product.id),
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: ratingValue,

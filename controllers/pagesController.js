@@ -54,20 +54,16 @@ function sitemapXml(req, res) {
   const db = require('../config/database').getDb();
   const baseUrl = 'https://afyacart.net';
 
-  // Static pages
   const staticPages = ['', '/about', '/privacy', '/terms', '/cookies', '/brands', '/deals', '/sitemap'];
-
-  // Categories (level 0)
   const categories = db.prepare('SELECT slug FROM categories WHERE level = 0').all();
-
-  // In-stock products (top 5000)
-  const products = db.prepare('SELECT slug FROM products WHERE in_stock = 1 ORDER BY stock_quantity DESC LIMIT 5000').all();
-
-  // Active brands (top 500)
+  const products = db.prepare('SELECT slug, title, primary_image FROM products WHERE in_stock = 1 ORDER BY stock_quantity DESC LIMIT 5000').all();
   const brands = db.prepare('SELECT slug FROM brands WHERE product_count > 0 ORDER BY product_count DESC LIMIT 500').all();
 
+  const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
   let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
-  xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
+  xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n';
+  xml += '        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n';
 
   staticPages.forEach(path => {
     xml += `  <url><loc>${baseUrl}${path}</loc><changefreq>weekly</changefreq><priority>${path === '' ? '1.0' : '0.5'}</priority></url>\n`;
@@ -78,7 +74,13 @@ function sitemapXml(req, res) {
   });
 
   products.forEach(p => {
-    xml += `  <url><loc>${baseUrl}/product/${p.slug}</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>\n`;
+    const hasImage = p.primary_image && !p.primary_image.includes('placeholder');
+    const imageUrl = hasImage ? (p.primary_image.startsWith('http') ? p.primary_image : baseUrl + p.primary_image) : null;
+    xml += `  <url>\n    <loc>${baseUrl}/product/${p.slug}</loc>\n    <changefreq>weekly</changefreq>\n    <priority>0.6</priority>\n`;
+    if (imageUrl) {
+      xml += `    <image:image>\n      <image:loc>${esc(imageUrl)}</image:loc>\n      <image:title>${esc(p.title)}</image:title>\n    </image:image>\n`;
+    }
+    xml += `  </url>\n`;
   });
 
   brands.forEach(b => {
@@ -86,7 +88,6 @@ function sitemapXml(req, res) {
   });
 
   xml += '</urlset>';
-
   res.set('Content-Type', 'application/xml');
   res.send(xml);
 }
