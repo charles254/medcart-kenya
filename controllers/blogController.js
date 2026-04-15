@@ -63,8 +63,9 @@ function show(req, res) {
         '@type': 'Organization',
         name: 'AfyaCart Kenya',
       },
-      datePublished: post.created_at,
-      dateModified: post.updated_at,
+      image: post.featured_image || 'https://afyacart.net/images/og-image.png',
+      datePublished: post.created_at ? new Date(post.created_at).toISOString() : new Date().toISOString(),
+      dateModified: post.updated_at ? new Date(post.updated_at).toISOString() : new Date().toISOString(),
       mainEntityOfPage: {
         '@type': 'WebPage',
         '@id': `https://afyacart.net/blog/${post.slug}`,

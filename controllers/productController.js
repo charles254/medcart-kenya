@@ -148,6 +148,7 @@ function show(req, res) {
     ogType: 'product',
     ogImage: hasRealImage ? absoluteImage : undefined,
     jsonLd: [breadcrumbLd, jsonLd],
+    categories: catRow ? [{ name: catRow.name, slug: catRow.slug }] : [],
     product,
     related,
   });
