@@ -27,6 +27,7 @@ function pageCache(ttlMs = DEFAULT_TTL) {
     if (cached && Date.now() - cached.timestamp < ttlMs) {
       res.set('Content-Type', 'text/html; charset=utf-8');
       res.set('X-Cache', 'HIT');
+      res.set('Cache-Control', 'public, max-age=300, s-maxage=600, stale-while-revalidate=86400');
       return res.send(cached.body);
     }
 
@@ -43,6 +44,7 @@ function pageCache(ttlMs = DEFAULT_TTL) {
         cache.set(key, { body, timestamp: Date.now() });
       }
       res.set('X-Cache', 'MISS');
+      res.set('Cache-Control', 'public, max-age=300, s-maxage=600, stale-while-revalidate=86400');
       return originalSend(body);
     };
 
