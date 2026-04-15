@@ -12,6 +12,7 @@ const rateLimit = require('express-rate-limit');
 const cartMiddleware = require('./middleware/cartMiddleware');
 const { notFound, serverError } = require('./middleware/errorHandler');
 const { sanitizeQuery } = require('./middleware/validation');
+const { pageCache } = require('./middleware/pageCache');
 
 // Routes
 const indexRoutes = require('./routes/index');
@@ -142,6 +143,9 @@ app.use(session({
 
 // Cart middleware - attach cart info to all views
 app.use(cartMiddleware);
+
+// Page cache - serves cached HTML for repeat requests (5 min TTL)
+app.use(pageCache(5 * 60 * 1000));
 
 // Mount routes
 app.use(indexRoutes);
